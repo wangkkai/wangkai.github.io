@@ -55,10 +55,9 @@ module.exports = function(ctx) {
   });
 
   Post.virtual('permalink').get(function() {
-    var url_for = ctx.extend.helper.get('url_for');
     var config = ctx.config;
-    var partial_url = url_for.call(ctx, this.path);
-    return config.url + _.replace(partial_url, config.root, '/');
+
+    return config.url + config.root + this.path;
   });
 
   Post.virtual('full_source').get(function() {
