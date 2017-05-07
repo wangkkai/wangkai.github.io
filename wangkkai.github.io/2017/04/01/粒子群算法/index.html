@@ -1,0 +1,811 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="粒子群算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前几天使用遗传算法，发现收敛速度很慢，在规定时间内很难得到满意解。当然，也可能是因为自己的候选集和交叉变异的方法不好。但是，真的有点改不动了。遂尝试用一下粒子群算法，如果效果还不错，后期有精力的情况下，可以将两者结合使用一下。
+
+例子群算法的简介基于对鸟群行为的模拟，Reynolds、Heppner和Grenader提出鸟群行为的 模拟。他们发现，鸟群在行进中会突然同步的改变方向，散开或者聚集等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="粒子群算法">
+<meta property="og:url" content="http://wangkkai.github.io/2017/04/01/粒子群算法/index.html">
+<meta property="og:site_name" content="wangkai's blog">
+<meta property="og:description" content="前几天使用遗传算法，发现收敛速度很慢，在规定时间内很难得到满意解。当然，也可能是因为自己的候选集和交叉变异的方法不好。但是，真的有点改不动了。遂尝试用一下粒子群算法，如果效果还不错，后期有精力的情况下，可以将两者结合使用一下。
+
+例子群算法的简介基于对鸟群行为的模拟，Reynolds、Heppner和Grenader提出鸟群行为的 模拟。他们发现，鸟群在行进中会突然同步的改变方向，散开或者聚集等">
+<meta property="og:image" content="http://oc6shen8h.bkt.clouddn.com/CodeCogsEqn.gif">
+<meta property="og:image" content="http://oc6shen8h.bkt.clouddn.com/CodeCogsEqn%20%281%29.gif">
+<meta property="og:image" content="http://oc6shen8h.bkt.clouddn.com/yCodeCogsEqn%20%281%29.gif">
+<meta property="og:updated_time" content="2017-04-02T09:00:32.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="粒子群算法">
+<meta name="twitter:description" content="前几天使用遗传算法，发现收敛速度很慢，在规定时间内很难得到满意解。当然，也可能是因为自己的候选集和交叉变异的方法不好。但是，真的有点改不动了。遂尝试用一下粒子群算法，如果效果还不错，后期有精力的情况下，可以将两者结合使用一下。
+
+例子群算法的简介基于对鸟群行为的模拟，Reynolds、Heppner和Grenader提出鸟群行为的 模拟。他们发现，鸟群在行进中会突然同步的改变方向，散开或者聚集等">
+<meta name="twitter:image" content="http://oc6shen8h.bkt.clouddn.com/CodeCogsEqn.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wangkkai.github.io/2017/04/01/粒子群算法/"/>
+
+
+
+
+
+  <title> 粒子群算法 | wangkai's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wangkai's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">岭深常得蛟龙在，梧高自有凤凰栖</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/04/01/粒子群算法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                粒子群算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T21:39:30+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/04/01/粒子群算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>前几天使用遗传算法，发现收敛速度很慢，在规定时间内很难得到满意解。当然，也可能是因为自己的候选集和交叉变异的方法不好。但是，真的有点改不动了。遂尝试用一下粒子群算法，如果效果还不错，后期有精力的情况下，可以将两者结合使用一下。</p>
+</blockquote>
+<h4 id="例子群算法的简介"><a href="#例子群算法的简介" class="headerlink" title="例子群算法的简介"></a>例子群算法的简介</h4><p>基于对鸟群行为的模拟，Reynolds、Heppner和Grenader提出鸟群行为的 模拟。他们发现，鸟群在行进中会突然同步的改变方向，散开或者聚集等。那么一定有某种潜在的能力或规则保证了这些同步的行为。这些科学家都认为上述行为是基于不可预知的鸟类社会行 为中的群体动态学。 在这些早期的模型中仅仅依赖个体间距的操作，也就是说，同步是鸟群中个体之间努力保持最优的距离的结果。对鱼群行为的研究：生物社会学家E.O.Wilson对鱼群进行了研究。提出：“至少在理论上，鱼群的个体成员能够受益于群体中其他个体在寻找食物的过程中的发现和以前的经验，这种受益超过了个体之间的竞争所带来的利益消耗，不管任何时候食物资源不可预知的分散。”这说明，同种生物之间信息的社会共享能够带来好处。这是PSO的基础。</p>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>假设有一群鸟，并且有一个食物在这群鸟的周围。但是这群笨鸟不知道具体的食物藏在哪里，但是它们知道自己离食物有多远并且知道哪只鸟离食物比较近。那么它们就会向离食物最近的那只鸟周围聚集，并且搜寻食物。这就是粒子群算法。</p>
+<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>在粒子群问题中，每一只鸟被抽象为一个微粒(点)，并延伸到N维空间，粒子I   在N维空间的位置表示为矢量Xi＝(x1，x2，…，xN)，并且该粒子飞行速度表示为矢量Vi＝(v1，v2，…，vN)．每个粒子都有一个由目标函数决定的适应值(fitness value)，并且知道自己到目前为止发现的最好位置(pbest)和现在的位置Xi．这个可以看作是粒子自己的飞行经验．除此之外，每个粒子还知道到目前为止整个群体中所有粒子发现的最好位置(gbest)(gbest是pbest中的最好值)．这个可以看作是粒子同伴的经验．粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。速度公式如下：<br><img src="http://oc6shen8h.bkt.clouddn.com/CodeCogsEqn.gif" alt=""><br>其中Vit是当前的速度，vi(t+1)是下一次的预测的方向。Pi为这只鸟历史中飞过的最好的位置，Pg为这群鸟飞过的最好的位置。W为权重，C1,C2为学习因子，通常C1=C2=2,r1,r2为[0,1]之间的随机数。那么下一个位置就按照下面的公式得到：<br><img src="http://oc6shen8h.bkt.clouddn.com/CodeCogsEqn%20%281%29.gif" alt="">  </p>
+<h4 id="实例说明"><a href="#实例说明" class="headerlink" title="实例说明"></a>实例说明</h4><p>举个简单的例子，假如我们想要求<img src="http://oc6shen8h.bkt.clouddn.com/yCodeCogsEqn%20%281%29.gif" alt="">的最小值，自变量x在[0,10]范围内。我们知道结果最优解应该是0。我们迭代100次看结果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">import java.util.Arrays;</div><div class="line"></div><div class="line">/**</div><div class="line"> * @author wangkai</div><div class="line"> * 测试粒子群算法</div><div class="line"> *2017年4月2日</div><div class="line"> */</div><div class="line">public class TestPSO &#123;</div><div class="line">    static double w=0.8;</div><div class="line">    static int c1=2;</div><div class="line">    static int c2=2;</div><div class="line">    static double r1=0.6;</div><div class="line">    static double r2=0.3;</div><div class="line">    //10个粒子位置</div><div class="line">    static double[][] pos=new double[10][3];</div><div class="line">    //10个粒子的速度</div><div class="line">    static double[][] speed=new double[10][3];</div><div class="line">    //10个粒子每一个曾经出现的最好的位置</div><div class="line">    static double [][] everPos=new double[10][3];</div><div class="line">    //10个粒子中出现的最好的位置</div><div class="line">    static double[] bestPos=new double[3];</div><div class="line">    //结果</div><div class="line">    static double res=Integer.MAX_VALUE;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        //随机产生10个粒子</div><div class="line">        for(int i=0;i&lt;10;i++)&#123;</div><div class="line">            for(int j=0;j&lt;3;j++)&#123;</div><div class="line">                double temp=Math.random()*10;</div><div class="line">                pos[i][j]=temp;</div><div class="line">                speed[i][j]=temp;</div><div class="line">                everPos[i][j]=temp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        int times=0;</div><div class="line">        while(times&lt;100)&#123;</div><div class="line">            cal();</div><div class="line">            adjust();</div><div class="line">            times++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //初始化10个粒子的适应值，记录最好的</div><div class="line">    public static void cal()&#123;</div><div class="line">        for(int i=0;i&lt;pos.length;i++)&#123;</div><div class="line">            double y=pos[i][0]*pos[i][0]+pos[i][1]*pos[i][1]+pos[i][2]*pos[i][2];</div><div class="line">            //记录曾经各自的最好位置</div><div class="line">            if(y&lt;everPos[i][0]*everPos[i][0]+everPos[i][1]*everPos[i][1]+everPos[i][2]*everPos[i][2])&#123;</div><div class="line">                everPos[i][0]=pos[i][0];</div><div class="line">                everPos[i][1]=pos[i][1];</div><div class="line">                everPos[i][2]=pos[i][2];</div><div class="line">            &#125;</div><div class="line">            //记录全局最好位置</div><div class="line">            if(y&lt;res)&#123;</div><div class="line">                bestPos[0]=pos[i][0];</div><div class="line">                bestPos[1]=pos[i][1];</div><div class="line">                bestPos[2]=pos[i][2];</div><div class="line">                res=y;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        System.out.println(res);</div><div class="line">    &#125;</div><div class="line">    //每次调整位置和方向</div><div class="line">    public static void adjust()&#123;</div><div class="line">        for(int i=0;i&lt;10;i++)&#123;</div><div class="line">            speed[i][0]=w*speed[i][0]+c1*r1*(everPos[i][0]-pos[i][0])+c2*r2*(bestPos[0]-pos[i][0]);</div><div class="line">            speed[i][1]=w*speed[i][1]+c1*r1*(everPos[i][1]-pos[i][1])+c2*r2*(bestPos[1]-pos[i][1]);</div><div class="line">            speed[i][2]=w*speed[i][2]+c1*r1*(everPos[i][2]-pos[i][2])+c2*r2*(bestPos[2]-pos[i][2]);</div><div class="line">        &#125;</div><div class="line">        for(int i=0;i&lt;10;i++)&#123;</div><div class="line">            pos[i][0]=pos[i][0]+speed[i][0];</div><div class="line">            pos[i][1]=pos[i][1]+speed[i][1];</div><div class="line">            pos[i][2]=pos[i][2]+speed[i][2];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<pre><code>15.418624574886254
+15.418624574886254
+15.418624574886254
+0.6224040666701277
+0.6224040666701277
+0.3996477195328236
+0.3996477195328236
+0.028295262679315033
+......
+......
+6.108683508810245E-10
+4.257406111625335E-10
+4.220347307433087E-10
+4.0535664138184896E-10
+4.0535664138184896E-10
+</code></pre><p>我们可以看到结果已经很接近0。并且我们只是迭代了100次。因此可以看到该算法的迭代速度还是挺快的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oc6shen8h.bkt.clouddn.com/Screenshot_2017-02-19-20-10-56-051_%E5%BE%AE%E4%BF%A1.png" alt="wangkai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/粒子群算法/" rel="tag"># 粒子群算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/19/遗传算法/" rel="next" title="遗传算法">
+                <i class="fa fa-chevron-left"></i> 遗传算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/19/ubuntu下shell提示unexpected operator/" rel="prev" title="ubuntu下shell提示unexpected operator">
+                ubuntu下shell提示unexpected operator <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wangkai" />
+          <p class="site-author-name" itemprop="name">wangkai</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangkkai" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5353386154/home" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子群算法的简介"><span class="nav-number">1.</span> <span class="nav-text">例子群算法的简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">2.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题抽象"><span class="nav-number">3.</span> <span class="nav-text">问题抽象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例说明"><span class="nav-number">4.</span> <span class="nav-text">实例说明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangkai</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "c0d477d715e3424cbb076626fd2fccec",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
