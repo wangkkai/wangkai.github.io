@@ -87,6 +87,6 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:git
-  repository:"https://github.com/wangkkai/wangkkai.github.io.git"
-  branch:master
+  type: git
+  repo: https://github.com/wangkkai/wangkkai.github.io.git
+  branch: master
