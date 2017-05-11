@@ -368,29 +368,16 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>You are given two arrays (without duplicates) nums1 and nums2 where nums1’s elements are subset of nums2. Find all the next greater numbers for nums1’s elements in the corresponding places of nums2.   </p>
-<p>The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.  </p>
-<p>Example 1:<br>Input: nums1 = [4,1,2], nums2 = [1,3,4,2].<br>Output: [-1,3,-1]<br>Explanation:  </p>
-</blockquote>
-<pre><code>For number 4 in the first array, you cannot find the next greater number for it in the second array, so output -1.
-For number 1 in the first array, the next greater number for it in the second array is 3.
-For number 2 in the first array, there is no next greater number for it in the second array, so output -1.
-</code></pre><blockquote>
-<p>Example 2: </p>
-<p>Input: nums1 = [2,4], nums2 = [1,2,3,4].<br>Output: [3,-1]<br>Explanation:  </p>
-</blockquote>
-<pre><code>For number 2 in the first array, the next greater number for it in the second array is 3.
-For number 4 in the first array, there is no next greater number for it in the second array, so output -1.
-</code></pre><blockquote>
-<p>Note:<br>All elements in nums1 and nums2 are unique.<br>The length of both nums1 and nums2 would not exceed 1000.</p>
-</blockquote>
-<p>解答：  </p>
-<p>其实这道题主要的部分就是找到nums2中每个数字的后续最近比它大的数。通常的做法就是遍历寻找，存入map中。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public int[] nextGreaterElement(int[] findNums, int[] nums) &#123;</div><div class="line">        HashMap&lt;Integer,Integer&gt; map=new HashMap&lt;Integer,Integer&gt;();</div><div class="line">        //寻找nums中后续较大的数</div><div class="line">        for (int i = 0; i &lt; nums.length; i++) &#123;</div><div class="line">            map.put(nums[i],-1);</div><div class="line">            int j=i+1;</div><div class="line">            while (j&lt;nums.length)&#123;</div><div class="line">                if (nums[j]&gt;nums[i])&#123;</div><div class="line">                    map.put(nums[i],nums[j]);</div><div class="line">                    break;</div><div class="line">                &#125;else j++;</div><div class="line">           &#125;</div><div class="line">        &#125;</div><div class="line">        int res[]=new int[findNums.length];</div><div class="line">            for (int i = 0; i &lt;findNums.length ; i++) &#123;</div><div class="line">            res[i]=map.get(findNums[i]);</div><div class="line">        &#125;</div><div class="line">        return res;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>对nums中每一个字符我们都需要遍历nums去寻找，所以时间的复杂度是O(n*n).但是我们如果采用stack就可以将时间复杂度降为O(n).并且注意<code>map.getOrDefault(findNums[i],-1);</code>这个方法。该方法可以设置map的默认值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public int[] nextGreaterElement1111(int[] findNums, int[] nums) &#123;</div><div class="line">        HashMap&lt;Integer,Integer&gt; map=new HashMap&lt;Integer,Integer&gt;();</div><div class="line">        Stack&lt;Integer&gt; stack=new Stack&lt;Integer&gt;();</div><div class="line">        //遍历nums一遍</div><div class="line">        for (int i=0;i&lt;nums.length;i++)&#123;</div><div class="line">            //如果栈不空，并且栈顶元素小于nums[i],就存入map.然后继续pop</div><div class="line">            while(!stack.isEmpty()&amp;&amp;stack.peek()&lt;nums[i])&#123;</div><div class="line">                map.put(stack.pop(),nums[i]);</div><div class="line">            &#125;</div><div class="line">            //压栈操作</div><div class="line">            stack.push(nums[i]);</div><div class="line">            //优点 假如nums=&#123;5,4,3,2，6&#125; 那么stack=&#123;2,3,4,5&#125; 当6到来的时候，挨个出栈存入map即可。  </div><div class="line">            //此时map&#123;&lt;2,6&gt;,&lt;3,6&gt;,&lt;4,6&gt;,&lt;5,6&gt;&#125;</div><div class="line">        &#125;</div><div class="line">        for (int i = 0; i &lt;findNums.length ; i++) &#123;</div><div class="line">            findNums[i]=map.getOrDefault(findNums[i],-1);</div><div class="line">        &#125;</div><div class="line">        return findNums;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-
-          
+<p>The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/11/Next Greater Element I/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
