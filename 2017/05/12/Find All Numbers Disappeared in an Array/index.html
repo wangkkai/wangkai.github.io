@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="leetcode," />
 
 
 
@@ -87,22 +87,22 @@
 
 
 
-<meta name="description" content="昨天做完美世界的在线笔试题，有一道选择题是求System.out.println(5.0/0.0+&amp;#39;&amp;#39;-&amp;quot;+0.0/0.0);的输出结果。当时确实不知道是什么结果，所以考完试就抓紧查了些资料。参考这篇博客 http://blog.csdn.net/naruto_ahu/article/details/8805808正确的输出结果是Infinity-NaN   
-
-下面就">
+<meta name="description" content="Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+Find all the elements of [1, n] inclusive that do not appear in this array.
+Could">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中的Infinity和NAN">
-<meta property="og:url" content="http://wangkkai.github.io/2016/04/26/Java中的Infinity和NAN/index.html">
+<meta property="og:title" content="Find All Numbers Disappeared in an Array">
+<meta property="og:url" content="http://wangkkai.github.io/2017/05/12/Find All Numbers Disappeared in an Array/index.html">
 <meta property="og:site_name" content="wangkai's blog">
-<meta property="og:description" content="昨天做完美世界的在线笔试题，有一道选择题是求System.out.println(5.0/0.0+&amp;#39;&amp;#39;-&amp;quot;+0.0/0.0);的输出结果。当时确实不知道是什么结果，所以考完试就抓紧查了些资料。参考这篇博客 http://blog.csdn.net/naruto_ahu/article/details/8805808正确的输出结果是Infinity-NaN   
-
-下面就">
-<meta property="og:updated_time" content="2017-02-19T13:22:49.249Z">
+<meta property="og:description" content="Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+Find all the elements of [1, n] inclusive that do not appear in this array.
+Could">
+<meta property="og:updated_time" content="2017-05-12T02:02:57.267Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中的Infinity和NAN">
-<meta name="twitter:description" content="昨天做完美世界的在线笔试题，有一道选择题是求System.out.println(5.0/0.0+&amp;#39;&amp;#39;-&amp;quot;+0.0/0.0);的输出结果。当时确实不知道是什么结果，所以考完试就抓紧查了些资料。参考这篇博客 http://blog.csdn.net/naruto_ahu/article/details/8805808正确的输出结果是Infinity-NaN   
-
-下面就">
+<meta name="twitter:title" content="Find All Numbers Disappeared in an Array">
+<meta name="twitter:description" content="Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+Find all the elements of [1, n] inclusive that do not appear in this array.
+Could">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://wangkkai.github.io/2016/04/26/Java中的Infinity和NAN/"/>
+  <link rel="canonical" href="http://wangkkai.github.io/2017/05/12/Find All Numbers Disappeared in an Array/"/>
 
 
 
 
 
-  <title> Java中的Infinity和NAN | wangkai's blog </title>
+  <title> Find All Numbers Disappeared in an Array | wangkai's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -275,7 +275,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2016/04/26/Java中的Infinity和NAN/">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/05/12/Find All Numbers Disappeared in an Array/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wangkai">
@@ -299,7 +299,7 @@
             
             
               
-                Java中的Infinity和NAN
+                Find All Numbers Disappeared in an Array
               
             
           </h1>
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-26T18:21:26+08:00">
-                2016-04-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T09:37:26+08:00">
+                2017-05-12
               </time>
             
 
@@ -337,8 +337,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -355,7 +355,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2016/04/26/Java中的Infinity和NAN/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/05/12/Find All Numbers Disappeared in an Array/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -383,18 +383,16 @@
 
       
         <blockquote>
-<p>昨天做完美世界的在线笔试题，有一道选择题是求<br><code>System.out.println(5.0/0.0+&#39;&#39;-&quot;+0.0/0.0);</code><br>的输出结果。当时确实不知道是什么结果，所以考完试就抓紧查了些资料。参考这篇博客 <a href="http://blog.csdn.net/naruto_ahu/article/details/8805808" target="_blank" rel="external">http://blog.csdn.net/naruto_ahu/article/details/8805808</a><br>正确的输出结果是<code>Infinity-NaN</code>   </p>
+<p>Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.</p>
+<p>Find all the elements of [1, n] inclusive that do not appear in this array.</p>
+<p>Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.</p>
+<p>Example:</p>
+<p>Input:<br>[4,3,2,7,8,2,3,1]</p>
+<p>Output:<br>[5,6]<br><a id="more"></a></p>
 </blockquote>
-<p>下面就分析一下为什么会是这个结果。  </p>
-<h4 id="1-为什么不是java-lang-ArithmeticException-by-zero？"><a href="#1-为什么不是java-lang-ArithmeticException-by-zero？" class="headerlink" title="1.为什么不是java.lang.ArithmeticException: / by zero？"></a>1.为什么不是java.lang.ArithmeticException: / by zero？</h4><p>之所以没有报异常，是因为这是浮点的除法，也就是说0.0并不是真正意义上的0，它只不过是非常接近0而已，所以y一个数除以一个接近0的数，那么结果应为无穷大。而在java浮点范围内存在Infinity表示无穷大的概念。<br>例如：<code>System.out.println(3/0.0);</code> 结果为Infinity  </p>
-<h4 id="2、NAN"><a href="#2、NAN" class="headerlink" title="2、NAN"></a>2、NAN</h4><p> 浮点算术保留了一个特殊的值用来表示一个不是数字的数量,这个值就是NaN（“不是一个数字（Not a Number）”的缩写）。对于所有没有良好的数字定义的浮点计算，<strong>例如0.0/0.0，或者对负数求平方根</strong>其值都是它。例如：<br>  <code>System.out.println(0.0/0.0);
-  System.out.println(Math.sqrt(-6));</code><br>  结果都为NAN<br>规范中描述道，NaN 不等于任何浮点数值，包括它自身在内。<br>任何浮点操作，只要它的一个或多个操作数为NaN，那么其结果为NaN。这条规则是非常合理的，但是它却具有奇怪的结果。例如，下面的程序将打印false：<br><code>double k=Math.sqrt(-6);
- System.out.println(k-k==0);</code><br>但是<code>System.out.println(k-k);</code>结果打印为NAN<br>总之，float 和double 类型都有一个特殊的NaN 值，用来表示不是数字的数量。</p>
-<h4 id="3、NaN与任何数比较均返回false"><a href="#3、NaN与任何数比较均返回false" class="headerlink" title="3、NaN与任何数比较均返回false"></a>3、NaN与任何数比较均返回false</h4><p>Double.NaN == Double.NaN，结果是false。但是，<br>Double a = new Double(Double.NaN);<br>Double b = new Double(Double.NaN);]<br>a.equals(b);  //true</p>
-<h4 id="4、Float-compare"><a href="#4、Float-compare" class="headerlink" title="4、Float.compare()"></a>4、Float.compare()</h4><p> &#160; &#160; &#160; &#160;而当我们使用Float.compare()这个方法来比较两个NaN时，却会得到相等的结果。可以用下面的代码验证：<br>float nan=Float.NaN;<br>float anotherNan=Float.NaN;<br>System.out.println(Float.compare(nan,anotherNan));</p>
-<p>compare()方法如果返回0，就说明两个数相等，返回-1，就说明第一个比第二个小，返回1则正好相反。<br>上面语句的返回结果是0。<br>一般来说，基本类型的compare()方法与直接使用”\==”的效果应该是一样的，但在NaN这个问题上不一致，是利是弊，取决于使用的人作何期望。当程序的语义要求两个NaN不应该被认为相等时（例如用NaN来代表两个无穷大，学过高等数学的朋友们都记得，两个无穷看上去符号是一样，但不应该认为是相等的两样东西），就使用==判断；如果NaN被看得无足轻重（毕竟，我只关心数字，两个不是数字的东西就划归同一类好了嘛）就使用Float.compare()。</p>
-<p>另一个在==和compare()方法上表现不一致的浮点数就是正0和负0（当然这也是计算机表示有符号数字的老大难问题），我们（万能的）人类当然知道0.0f和-0.0f应该是相等的数字，但是试试下面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">float negZero=-0.0f;</div><div class="line">float zero=0.0f;</div><div class="line">System.out.println(zero==negZero);</div><div class="line">System.out.println(Float.compare(zero,negZero));</div></pre></td></tr></table></figure></p>
-<p>返回的结果是true和-1。看到了么，==认为正0和负0相等，而compare()方法认为正0比负0要大。所以对0的比较来说，==是更好的选择。<br>更有趣的事：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">double i = 1.0 / 0;                  </div><div class="line">System.out.println(i);             //Infinity  </div><div class="line">System.out.println(i + 1);         //Infinity  </div><div class="line">System.out.println(i == i + 1);    //true  </div><div class="line">  </div><div class="line">i = 0.0 / 0;  </div><div class="line">System.out.println(i);             //NaN  </div><div class="line">System.out.println(i + 1);         //NaN  </div><div class="line">System.out.println(i == i + 1);    //false</div></pre></td></tr></table></figure></p>
+<p>这题要求找出数组中没有出现的所有的数字。但是要求时间复杂度O(n),不使用额外的空间复杂度。<br>如果可以使用O(n)的空间复杂度，我们就可以使用一个额外的辅助数组比如arr[ ]用来标记对应的nums[i]。<br>比如nums[i]=3,我们就将辅助数组的第三个数赋值为-1，也就是arr[2]=-1.<br>最后只要遍历arr，找出其中不为-1的位置即可，该位置+1就是未出现的数。<br>例如：<br>nums=[4,3,2,7,8,2,3,1]<br>arr =[-1,-1,-1,-1,0,0,-1,-1]<br>不为-1的位置是4,5.加1后为5,6.    </p>
+<p>但是如果不允许使用额外的空间复杂度，我们就需要在原有的数组基础上想办法。<br>方法就是，利用nums充当arr。相当于arr不存-1,而是存放nums[i]的原有的正数取反。<br>同样是上面的例子，为了清楚地说明，我们还使用o(n)的空间复杂度。<br>nums=[4,3,2,7,8,2,3,1]<br>arr =[-4,-3,-2,-7,8,2,-3,-1]   </p>
+<p>如上，我们只需要找出arr&gt;0的数的位置即可。位置为5,6.<br>到这里，我们就可以消去我们的空间复杂度了。将nums替换为arr。这样即使替换后也不会造成任何的影响。我们只需要在取的时候，nums[i]取绝对值就可以了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public ArrayList&lt;Integer&gt; findDisappearedNumbers(int[] nums) &#123;</div><div class="line">       ArrayList&lt;Integer&gt; list=new ArrayList&lt;Integer&gt;();</div><div class="line">       for (int i = 0; i &lt; nums.length; i++) &#123;</div><div class="line">           int value=Math.abs(nums[i])-1;</div><div class="line">           if (nums[value]&gt;0)&#123;</div><div class="line">               nums[value]=-nums[value];</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       for (int i = 0; i &lt;nums.length ; i++) &#123;</div><div class="line">           if (nums[i]&gt;0)&#123;</div><div class="line">               list.add(i+1);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       return list;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -434,7 +432,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           
         </div>
       
@@ -447,15 +445,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/05/11/Single Number/" rel="next" title="Single Number">
+                <i class="fa fa-chevron-left"></i> Single Number
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/19/括号匹配/" rel="prev" title="括号匹配">
-                括号匹配 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -527,17 +525,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -615,22 +604,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-为什么不是java-lang-ArithmeticException-by-zero？"><span class="nav-number">1.</span> <span class="nav-text">1.为什么不是java.lang.ArithmeticException: / by zero？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、NAN"><span class="nav-number">2.</span> <span class="nav-text">2、NAN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、NaN与任何数比较均返回false"><span class="nav-number">3.</span> <span class="nav-text">3、NaN与任何数比较均返回false</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、Float-compare"><span class="nav-number">4.</span> <span class="nav-text">4、Float.compare()</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
