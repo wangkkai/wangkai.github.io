@@ -88,11 +88,11 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="wangkai's blog">
+<meta property="og:title" content="wangkai&#39;s blog">
 <meta property="og:url" content="http://wangkkai.github.io/page/3/index.html">
-<meta property="og:site_name" content="wangkai's blog">
+<meta property="og:site_name" content="wangkai&#39;s blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangkai's blog">
+<meta name="twitter:title" content="wangkai&#39;s blog">
 
 
 
@@ -267,6 +267,299 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/04/19/ubuntu下shell提示unexpected operator/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/19/ubuntu下shell提示unexpected operator/" itemprop="url">
+                  ubuntu下shell提示unexpected operator
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T14:39:20+08:00">
+                2017-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天用ubuntu写了个shell,运行的时候总是报如下的错误，因为之前执行shell都是采用./xx.sh的方式，所以从来没有遇见过这个问题。<br><img src="http://oc6shen8h.bkt.clouddn.com/error.jpg" alt=""><br>上网查了一下，原因是ubuntu默认的执行shell不是bash而是dash.所以只要将dash禁用即可，命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo dpkg-reconfigure dash</div></pre></td></tr></table></figure></p>
+<p>之后选择NO即可。<br><img src="http://oc6shen8h.bkt.clouddn.com/dash.jpg" alt=""><br>修改之后会显示<br><img src="http://oc6shen8h.bkt.clouddn.com/repacle.jpg" alt=""><br>说明成功！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/04/01/粒子群算法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/01/粒子群算法/" itemprop="url">
+                  粒子群算法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T21:39:30+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>前几天使用遗传算法，发现收敛速度很慢，在规定时间内很难得到满意解。当然，也可能是因为自己的候选集和交叉变异的方法不好。但是，真的有点改不动了。遂尝试用一下粒子群算法，如果效果还不错，后期有精力的情况下，可以将两者结合使用一下。</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/01/粒子群算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/03/19/《兄弟》/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -376,6 +669,301 @@
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/03/19/遗传算法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/19/遗传算法/" itemprop="url">
+                  遗传算法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T14:39:20+08:00">
+                2017-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>最近因为参加华为的精英挑战赛，所以接触到了遗传算法。在简单了解之后，发现实际的效果还是不错的。主要是在于参数的调整。在博客园发现了这篇关于遗传算法的总结，觉得还是比较全面的。虽然不包括具体的一些实际问题，可能看起来略抽象，但还是很有用的。</p>
+</blockquote>
+<h3 id="I-简介"><a href="#I-简介" class="headerlink" title="I 简介"></a>I 简介</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>遗传算法(Genetic Algorithms, GA)是一类借鉴生物界自然选择和自然遗传机制的随机化搜索算法。<br>它模拟自然选择和自然遗传过程中发生的繁殖、交叉和基因突变现象，在每次迭代中都保留一组候选解，并按某种指标从解群中选取较优的个体，利用遗传算子(选择、交叉和变异)对这些个体进行组合，产生新一代的候选解群，重复此过程，直到满足某种收敛指标为止。</p>
+<p>GA的组成:</p>
+<p>（1）编码（产生初始种群）</p>
+<p>（2）适应度函数</p>
+<p>（3）遗传算子（选择、交叉、变异）</p>
+<p>（4）运行参数</p>
+<p>编码</p>
+<p>基因在一定能够意义上包含了它所代表的问题的解。基因的编码方式有很多，这也取决于要解决的问题本身。常见的编码方式有：</p>
+<p>（1）       二进制编码，基因用0或1表示（常用于解决01背包问题）</p>
+<p>如：基因A：00100011010 (代表一个个体的染色体)</p>
+<p>（2）       互换编码（用于解决排序问题，如旅行商问题和调度问题）</p>
+<p>如旅行商问题中，一串基因编码用来表示遍历的城市顺序，如：234517986，表示九个城市中，先经过城市2，再经过城市3，依此类推。</p>
+<p>（3）       树形编码（用于遗传规划中的演化编程或者表示）</p>
+<p>如,问题：给定了很多组输入和输出。请你为这些输入输出选择一个函数，使得这个函数把每个输入尽可能近地映射为输出。</p>
+<p>编码方法：基因就是树形结构中的一些函数。</p>
+<p>（4）       值编码 （二进制编码不好用时，解决复杂的数值问题）</p>
+<p>在值编码中，每个基因就是一串取值。这些取值可以是与问题有关任何值：整数，实数，字符或者其他一些更复杂的东西。</p>
+<p>适应度函数</p>
+<p>遗传算法对一个个体（解）的好坏用适应度函数值来评价，适应度函数值越大，解的质量越好。适应度函数是遗传算法进化过程的驱动力，也是进行自然选择的唯一标准，它的设计应结合求解问题本身的要求而定。</p>
+<p>如TSP问题，遍历各城市路径之和越小越好，这样可以用可能的最大路径长度减去实际经过的路径长度，作为该问题的适应度函数。</p>
+<h4 id="遗传算子——选择"><a href="#遗传算子——选择" class="headerlink" title="遗传算子——选择"></a>遗传算子——选择</h4><p>遗传算法使用选择运算来实现对群体中的个体进行优胜劣汰操作：适应度高的个体被遗传到下一代群体中的概率大；适应度低的个体，被遗传到下一代群体中的概率小。选择操作的任务就是按某种方法从父代群体中选取一些个体，遗传到下一代群体。</p>
+<p>SGA（基本遗传算法）中采用轮盘赌选择方法。</p>
+<p>轮盘赌选择又称比例选择算子，基本思想：各个个体被选中的概率与其适应度函数值大小成正比。设群体大小为n ，个体i 的适应度为 Fi，则个体i 被选中遗传到下一代群体的概率为：</p>
+<h4 id="遗传算子——交叉"><a href="#遗传算子——交叉" class="headerlink" title="遗传算子——交叉"></a>遗传算子——交叉</h4><p>所谓交叉运算，是指对两个相互配对的染色体依据交叉概率按某种方式相互交换其部分基因，从而形成两个新的个体。交叉运算在GA中起关键作用，是产生新个体的主要方法。</p>
+<ol>
+<li>单交叉点法 （用于二进制编码）</li>
+</ol>
+<p>选择一个交叉点,子代在交叉点前面的基因从一个父代基因那里得到,后面的部分从另外一个父代基因那里得到。</p>
+<p>如：交叉前：</p>
+<p>00000|01110000000010000</p>
+<p>11100|00000111111000101</p>
+<p>交叉后：</p>
+<p>00000|00000111111000101</p>
+<p>11100|01110000000010000</p>
+<ol>
+<li>双交叉点法 （用于二进制编码）</li>
+</ol>
+<p>选择两个交叉点,子代基因在两个交叉点间部分来自一个父代基因,其余部分来自于另外一个父代基因.</p>
+<p>如：交叉前：</p>
+<p>01 |0010| 11</p>
+<p>11 |0111| 01</p>
+<p>交叉后：</p>
+<p>11 |0010| 01</p>
+<p>01 |0111| 11</p>
+<ol>
+<li>基于“ 与/或 ”交叉法 （用于二进制编码） </li>
+</ol>
+<p>对父代按位”与”逻辑运算产生一子代A;按位”或”逻辑运算产生另一子代B。该交叉策略在解背包问题中效果较好 .</p>
+<p>交叉前：</p>
+<p>01001011</p>
+<p>11011101</p>
+<p>交叉后：</p>
+<p>01001001</p>
+<p>11011111</p>
+<ol>
+<li>单交叉点法 （用于互换编码）</li>
+</ol>
+<p>选择一个交叉点，子代的从初始位置出发的部分从一个基因复制，然后在另一个基因中扫描，如果某个位点在子代中没有，就把它添加进去。</p>
+<p>如：交叉前：</p>
+<pre><code>87213 | 09546
+
+98356 | 71420
+</code></pre><p>交叉后：</p>
+<pre><code>87213 | 95640
+
+98356 | 72104
+</code></pre><ol>
+<li>部分匹配交叉（PMX）法（用于互换编码）</li>
+</ol>
+<p>先随机产生两个交叉点，定义这两点间的区域为匹配区域，并用交换两个父代的匹配区域。</p>
+<p>父代A：872 | 130 | 9546</p>
+<p>父代B：983 | 567 | 1420    变为：</p>
+<p>TEMP A: 872 | 567 | 9546</p>
+<p>TEMP B: 983 | 130 | 1420</p>
+<p>对于 TEMP A、TEMP Ｂ中匹配区域以外出现的数码重复，要依据匹配区域内的位置逐一进行替换。匹配关系：1&lt;——&gt;５　３&lt;——&gt;６　７&lt;——&gt;０</p>
+<p>子代Ａ：802 | 567 | 9143</p>
+<p>子代Ｂ：986 | 130 | 5427</p>
+<ol>
+<li>顺序交叉法(OX) （用于互换编码）</li>
+</ol>
+<p>从父代Ａ随机选一个编码子串，放到子代Ａ的对应位置；子代Ａ空余的位置从父代Ｂ中按Ｂ的顺序选取（与己有编码不重复）。同理可得子代Ｂ。</p>
+<p>父代A: 872 | 139 | 0546</p>
+<p>父代B: 983 | 567 | 1420</p>
+<p>交叉后：</p>
+<p>子代A: 856 | 139 | 7420</p>
+<p>子代B: 821 | 567 | 3904</p>
+<ol>
+<li>循环交叉（CX）法（用于互换编码）</li>
+</ol>
+<p>CX同OX交叉都是从一个亲代中取一些城市，而其它城市来自另外一个亲代，但是二者不同之处在于：OX中来自第一个亲代的编码子串是随机产生的，而CX却不是，它是根据两个双亲相应位置的编码而确定的。</p>
+<p>父代A：1 2 3 4 5 6 7 8 9  </p>
+<p>父代A：5 4 6 9 2 3 7 8 1</p>
+<p>可得循环基因：1-&gt;5-&gt;2-&gt;4-&gt;9-&gt;1</p>
+<p>用循环的基因构成子代Ａ，顺序与父代Ａ一样</p>
+<p>1 2   4 5          9</p>
+<p>用父代Ｂ剩余的基因填满子代Ａ：</p>
+<p>1 2 6 4 5 3 7 8 9</p>
+<p>子代Ｂ的编码同理。（循环基因 5-&gt;1-&gt;9-&gt;4-&gt;2-&gt;5）</p>
+<h4 id="遗传算子——变异"><a href="#遗传算子——变异" class="headerlink" title="遗传算子——变异"></a>遗传算子——变异</h4><p>变异是指依据变异概率将个体编码串中的某些基因值用其它基因值来替换，从而形成一个新的个体。GA中的变异运算是产生新个体的辅助方法，它决定了GA的局部搜索能力，同时保持种群的多样性。交叉运算和变异运算的相互配合，共同完成对搜索空间的全局搜索和局部搜索。</p>
+<p>注：变异概率Pm不能太小，这样降低全局搜索能力；也不能太大，Pm &gt; 0.5，这时GA退化为随机搜索。</p>
+<ol>
+<li>基本位变异算子 （用于二进制编码）</li>
+</ol>
+<p>基本位变异算子是指对个体编码串随机指定的某一位或某几位基因作变异运算。对于基本遗传算法中用二进制编码符号串所表示的个体，若需要进行变异操作的某一基因座上的原有基因值为0，则变异操作将其变为1；反之，若原有基因值为1，则变异操作将其变为0。</p>
+<p>如：变异前：</p>
+<p>000001110000000010000</p>
+<p>变异后：</p>
+<p>000001110001000010000</p>
+<ol>
+<li>逆转变异算子（用于互换编码）</li>
+</ol>
+<p>在个体中随机挑选两个逆转点，再将两个逆转点间的基因交换。</p>
+<p>如：变异前：</p>
+<p>1346798205</p>
+<p>变异后：</p>
+<p>1246798305</p>
+<p> 运行参数</p>
+<p>GA运行时选择的参数应该视解决的具体问题而定，到目前为止，还没有一个适用于GA所有应用领域的关于算法参数的理论。下面是一般情况下使用GA时推荐的参数：</p>
+<p>1) 交叉率</p>
+<p>交叉率一般来说应该比较大，推荐使用80％-95％。</p>
+<p>2) 变异率</p>
+<p>变异率一般来说应该比较小，一般使用0.5％-1％最好。</p>
+<p>3) 种群的规模</p>
+<p>种群规模指的是群体中个体的个数。实验发现，比较大的种群的规模并不能优化遗传算法的结果。种群的大小推荐使用20-30，一些研究表明，种群规模的大小取决于编码的方法，具体的说就是编码串（Encoded String）的大小。也就是说，如果说采用32位为基因编码的时候种群的规模大小最好为32的话，那么当采用16位为基因编码时种群的规模相应应变为原来的两倍。</p>
+<p>4) 遗传运算的终止进化代数</p>
+<p>个人的想法是，设定一个计数器，如果连续N代出现的最优个体的适应度都一样时，（严格的说应该是，连续N代子代种群的最优个体适应度都&lt;=父代最优个性的适应度）可以终止运算。</p>
+<p>也可以简单的根据经验固定进化的代数。</p>
+<h3 id="运算流程"><a href="#运算流程" class="headerlink" title="运算流程"></a>运算流程</h3><p><img src="http://oc6shen8h.bkt.clouddn.com/2010091823020895.jpg" alt=""></p>
+<p> 图中的“是否满足停止准则”便可参照上节中“遗传运算的终止进化代数”</p>
+<h3 id="III-灾变与精英主义"><a href="#III-灾变与精英主义" class="headerlink" title="III 灾变与精英主义"></a>III 灾变与精英主义</h3><p>灾变</p>
+<p>遗传算法的局部搜索能力较强，但是很容易陷入局部极值。引用网上的一段原话:</p>
+<p>“那么如何解决遗传算法容易陷入局部极值的问题呢？让我们来看看大自然提供的方案。六千五百万年以前，恐龙和灵长类动物并存，恐龙在地球上占绝对统治地位，如果恐龙没有灭绝灵长类动物是绝没有可能统治地球的。正是恐龙的灭绝才使灵长类动物有了充分进化的余地，事实上地球至少经历了5次物种大灭绝，每次物种灭绝都给更加高级的生物提供了充分进化的余地。所以要跳出局部极值就必须杀死当前所有的优秀个体，从而让远离当前极值的点有充分的进化余地。这就是灾变的思想。”</p>
+<p>灾变就是杀掉最优秀的个体，这样才可能产生更优秀的物种。那何时进行灾变，灾变次数又如何设定？</p>
+<p>何时进行灾变，可以采用灾变倒计数的方式。如果n代还没有出现比之前更优秀的个体时，可以发生灾变。灾变次数可以这样来确定，如果若干次灾变后产生的个体的适应度与没灾变前的一样，可停止灾变。</p>
+<p>精英主义</p>
+<p>当利用交叉和变异产生新的一代时，我们有很大的可能把在某个中间步骤中得到的最优解丢失。</p>
+<p>精英主义的思想是,在每一次产生新的一代时，首先把当前最优解原封不动的复制到新的一代中。然后按照前面所说的那样做就行。精英主义方法可以大幅提高运算速度，因为它可以防止丢失掉找到的最好的解。</p>
+<p>矛盾</p>
+<p>由上面看来,灾变与精英主义之间似乎存在着矛盾.前者是将产生的最优个体杀掉,而后者是将最优秀个体基因直接保存到下一代.</p>
+<p>应该辩证地看待它们之间的矛盾,两者其实是可以共存的.我们在每一代进行交叉运算时,均直接把最优秀的个体复制到下一代;但当连续N代,都没有更优秀的个体出现时,便可以猜想可能陷入局部最优解了,这样可以采用灾变的手段.可以说,精英主义是伴随的每一代的,但灾变却不需要经常发生,否则算法可能下降为随机搜索了.</p>
+<p>当然,每个算法中不一定要用精英主义和灾变的手段,应该根据具体的问题而定.</p>
+<h3 id="IV-GA的特点"><a href="#IV-GA的特点" class="headerlink" title="IV GA的特点"></a>IV GA的特点</h3><p>遗传算法的优点:</p>
+<p>（1）群体搜索，易于并行化处理；</p>
+<p>（2）不是盲目穷举，而是启发式搜索；</p>
+<p>（3）适应度函数不受连续、可微等条件的约束，适用范围很广。</p>
+<p>（4）容易实现。一旦有了一个遗传算法的程序，如果想解决一个新的问题，只需针对新的问题重新进行基因编码就行；如果编码方法也相同，那只需要改变一下适应度函数就可以了。</p>
+<p>遗传算法的缺点:</p>
+<p>（1）全局搜索能力不强,很容易陷入局部最优解跳不出来；(可结合SA进行改进,因为SA在理率上是100%得到全局最优的,但搜索代价高)</p>
+<p>（2）计算时间长。</p>
+<p><a href="http://www.cnblogs.com/victoria/archive/2010/09/18/GA.html" target="_blank" rel="external">原文链接</a></p>
+
+          
         
       
     </div>
@@ -997,448 +1585,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/28/实现栈的min函数/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/28/实现栈的min函数/" itemprop="url">
-                  实现栈的min函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T20:00:00+08:00">
-                2017-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。</p>
-</blockquote>
-<p>思路：本题可以用两个栈来实现该功能，也就是一个栈stack1用来实现正常的栈功能，另一个栈stack2用来保存最小值。stack2的容量可以与stack1的容量完全相同，只不过stack2存放的却是stack1对应位置的最小值，需要注意的点就是stack2存放时候需要看当前值v是不是比stack2之前的值小，是的话就存入,否则就存stack2.peek()值。<br>Stack1: 2 3 4 5 1<br>Stack2: 2 2 2 2 1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">import java.util.Stack;</div><div class="line"></div><div class="line">public class MyStack &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        MyStack mystack=new MyStack(stack1,stack2);</div><div class="line">        mystack.push(1);</div><div class="line">        mystack.push(2);</div><div class="line">        System.out.println(mystack.min());</div><div class="line">    &#125;</div><div class="line">    static Stack&lt;Integer&gt; stack1=new Stack&lt;Integer&gt;();</div><div class="line">    static Stack&lt;Integer&gt; stack2=new Stack&lt;Integer&gt;();</div><div class="line">    public void push(int node) &#123;</div><div class="line">        stack1.push(node);</div><div class="line">        if(stack2.size()==0)&#123;</div><div class="line">            stack2.push(node);</div><div class="line">        &#125;else if(node&lt;=stack2.peek())&#123;</div><div class="line">            stack2.push(node);</div><div class="line">        &#125;else&#123;</div><div class="line">             stack2.push(stack2.peek());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void pop() &#123;</div><div class="line">        stack2.pop();</div><div class="line">        stack1.pop();</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public int top() &#123;</div><div class="line">        return stack1.peek();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public int min() &#123;</div><div class="line">        return stack2.peek();</div><div class="line">    &#125;</div><div class="line">    public MyStack(Stack&lt;Integer&gt; s1,Stack&lt;Integer&gt; s2) &#123;</div><div class="line">        this.stack1=s1;</div><div class="line">        this.stack2=s2;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/27/转圈打印矩阵/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/27/转圈打印矩阵/" itemprop="url">
-                  转圈打印矩阵
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T22:18:23+08:00">
-                2017-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>链接：牛客网输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下矩阵：<br>1 2 3 4<br>5 6 7 8<br>9 10 11 12<br>13 14 15 16<br>则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">import java.util.*;</div><div class="line">public class Matrix &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int[][] matrix = &#123; &#123; 1, 2, 3&#125;,&#123;4,5,6&#125;,&#123;7,8,9&#125;,&#123;10,11,12&#125;,&#123;13,14,15&#125; &#125;;</div><div class="line">        printMatrix(matrix);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void printMatrix(int[][] matrix) &#123;</div><div class="line">        if (matrix.length == 0) &#123;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (matrix.length == 1) &#123;</div><div class="line">            for (int i = 0; i &lt; matrix[0].length; i++) &#123;</div><div class="line">                System.out.print(matrix[0][i]);</div><div class="line">            &#125;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (matrix[0].length == 1) &#123;</div><div class="line">            for (int i = 0; i &lt; matrix.length; i++) &#123;</div><div class="line">                System.out.print(matrix[i][0]);</div><div class="line">            &#125;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        int row1 = 0;// 左上角的横坐标</div><div class="line">        int col1 = 0;// 左上角的纵坐标</div><div class="line">        int row2 = matrix.length;// 右下角的横坐标</div><div class="line">        int col2 = matrix[0].length;// 右下角的纵坐标</div><div class="line">        while (row1 &lt; row2 &amp;&amp; col1 &lt; col2) &#123;</div><div class="line">            for (int i = col1; i &lt; col2 - 1; i++) &#123;// 打印上行 123</div><div class="line">                System.out.print(matrix[row1][i]);</div><div class="line">            &#125;</div><div class="line">            for (int i = row1; i &lt; row2 - 1; i++) &#123;// 打印右列 4 8 12</div><div class="line">                System.out.print(matrix[i][col2 - 1]);</div><div class="line">            &#125;</div><div class="line">            for (int i = col2 - 1; i &gt; col1; i--) &#123;// 打印下行 16 15 14</div><div class="line">                System.out.print(matrix[row2 - 1][i]);</div><div class="line">            &#125;</div><div class="line">            for (int i = row2 - 1; i &gt; row1; i--) &#123;// 打印左列 13 9 5</div><div class="line">                System.out.print(matrix[i][col1]);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            row1++;</div><div class="line">            col1++;</div><div class="line">            row2--;</div><div class="line">            col2--;</div><div class="line">            if (row1 == row2 - 1) &#123; //内部在一行的时候</div><div class="line">                for (int i = col1; i &lt; col2; i++) &#123;</div><div class="line">                    System.out.println(matrix[row1][i]);</div><div class="line">                &#125;</div><div class="line">                return;</div><div class="line">            &#125;</div><div class="line">            if (col1 == col2 - 1) &#123; //内部在一列的时候</div><div class="line">                for (int i = row1; i &lt; row2; i++) &#123;</div><div class="line">                    System.out.print(matrix[i][col1]);</div><div class="line">                &#125;</div><div class="line">                return;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/27/二叉树镜像/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/27/二叉树镜像/" itemprop="url">
-                  二叉树镜像
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T16:27:23+08:00">
-                2017-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>操作给定的二叉树，将其变换为源二叉树的镜像。</p>
-</blockquote>
-<p><img src="http://oc6shen8h.bkt.clouddn.com/%E9%95%9C%E5%83%8F.jpg" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">public class Solution &#123;</div><div class="line">    public void Mirror(TreeNode root) &#123;</div><div class="line">        if(root==null)&#123;</div><div class="line">            return ;</div><div class="line">        &#125;</div><div class="line">        if(root!=null)&#123;</div><div class="line">            //交换左右结点</div><div class="line">            TreeNode node=null;</div><div class="line">            node =root.left;</div><div class="line">            root.left=root.right;</div><div class="line">            root.right=node;</div><div class="line">        &#125;</div><div class="line">        //递归交换</div><div class="line">        Mirror(root.left);</div><div class="line">        Mirror(root.right);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class TreeNode &#123;</div><div class="line">    int val = 0;</div><div class="line">    TreeNode left = null;</div><div class="line">    TreeNode right = null;</div><div class="line"></div><div class="line">    public TreeNode(int val) &#123;</div><div class="line">        this.val = val;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1483,7 +1634,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1501,7 +1652,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -88,10 +88,11 @@
 
 
 <meta name="description" content="volatile的内存可见性在多线程环境下，经常看到volatile关键字。用volatile修饰的变量，能够保持内存的可见性。而什么是内存的可见性呢？所谓的内存可见性就是一个线程对共享变量进行修改，其他线程能够立即得到该共享变量的最新值。为什么会出现内存的不可见性呢？这是因为每个线程都有自己的缓存。一个线程对共享变量的修改会先修改缓存，然后再写入到主存中。在这个过程中就会出现线程读取的不一致。也">
+<meta name="keywords" content="Java,volatile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="详解java中volatile关键字">
 <meta property="og:url" content="http://wangkkai.github.io/2017/02/19/详解java中volatile关键字/index.html">
-<meta property="og:site_name" content="wangkai's blog">
+<meta property="og:site_name" content="wangkai&#39;s blog">
 <meta property="og:description" content="volatile的内存可见性在多线程环境下，经常看到volatile关键字。用volatile修饰的变量，能够保持内存的可见性。而什么是内存的可见性呢？所谓的内存可见性就是一个线程对共享变量进行修改，其他线程能够立即得到该共享变量的最新值。为什么会出现内存的不可见性呢？这是因为每个线程都有自己的缓存。一个线程对共享变量的修改会先修改缓存，然后再写入到主存中。在这个过程中就会出现线程读取的不一致。也">
 <meta property="og:updated_time" content="2017-05-03T06:41:57.417Z">
 <meta name="twitter:card" content="summary">
@@ -546,7 +547,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -564,7 +565,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
