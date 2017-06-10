@@ -267,6 +267,836 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/24/二叉树的重建/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/24/二叉树的重建/" itemprop="url">
+                  二叉树的重建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-24T18:52:52+08:00">
+                2017-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。<br>例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。<br>我们知道，先根遍历的第一个值val一定是二叉树的根。并且在中根遍历中，val左边的一定是左子树，在val右边的是右子树。我们对左子树、右子树递归调用，直到数组为空。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">import java.util.Arrays;</div><div class="line"></div><div class="line">public class Solution &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		int [] pre=&#123;1,2,3,4,5,6,7&#125;;</div><div class="line">		int [] in=&#123;3,2,4,1,6,5,7&#125;;</div><div class="line">		TreeNode node=reConstructBinaryTree(pre,in);</div><div class="line">		preSearch(node);</div><div class="line">	&#125;</div><div class="line">	public static TreeNode reConstructBinaryTree(int[] pre, int[] in) &#123;</div><div class="line">		//递归的终止条件</div><div class="line">		if (pre.length==0 || in.length==0) &#123;</div><div class="line">			return null;</div><div class="line">		&#125;</div><div class="line">		TreeNode head = new TreeNode(pre[0]);//二叉树的根</div><div class="line">		for (int i = 0; i &lt; in.length; i++) &#123;</div><div class="line">			if (head.val == in[i]) &#123;</div><div class="line">				//左子树为去掉根节点后的位置到中根遍历根的位置之间，也就是pre[1~i]。也是in[0~i-1]</div><div class="line">				head.left = reConstructBinaryTree(Arrays.copyOfRange(pre, 1, i+1 ), Arrays.copyOfRange(in, 0, i));</div><div class="line">				//右子树为中根遍历根的位置到数组最后，也就是pre[i+1~end]。也是in[i+1~end]</div><div class="line">				head.right = reConstructBinaryTree(Arrays.copyOfRange(pre, i + 1, pre.length),</div><div class="line">						Arrays.copyOfRange(in, i + 1, in.length));</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return head;</div><div class="line">	&#125;</div><div class="line">	//前根遍历，用来测试是否正确。</div><div class="line">	public static void preSearch(TreeNode head)&#123;</div><div class="line">		if(head==null)&#123;</div><div class="line">			return;</div><div class="line">		&#125;</div><div class="line">		System.out.print(head.val);</div><div class="line">		preSearch(head.left);</div><div class="line">		preSearch(head.right);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">//二叉树节点</div><div class="line">class TreeNode &#123;</div><div class="line">	int val;</div><div class="line">	TreeNode left;</div><div class="line">	TreeNode right;</div><div class="line"></div><div class="line">	TreeNode(int x) &#123;</div><div class="line">		val = x;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/22/一、多线程的创建/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/一、多线程的创建/" itemprop="url">
+                  一、多线程的创建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-22T20:31:31+08:00">
+                2017-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>简单来说，操作系统可以同时执行多个任务，每个任务可以看成是一个进程。而每个进程又能同时执行多个任务，这个任务就可以看做是线程。线程与进程相比有很多优点，比如不用单独为每个线程分配内存空间，创建的开销小等。目前几乎所有的软件都支持多线程。java创建多线程有如下三种方式。</p>
+<h4 id="1-继承Thread类"><a href="#1-继承Thread类" class="headerlink" title="1.继承Thread类"></a>1.继承Thread类</h4><pre><code>public class TestThread1 extends Thread{
+private int num;
+public void run(){
+    for (int i=0 ;i&lt;10;i++ ) {
+            //获得当前线程的名字
+        System.out.println(Thread.currentThread().getName()+&quot;: &quot;+(++num));
+    }
+}
+public static void main(String[] args) {
+    TestThread1 t1=new TestThread1();
+    TestThread1 t2=new TestThread1();
+    t1.start();
+    t2.start();
+}
+</code></pre><p>}<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/22/一、多线程的创建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/22/子数组的最大和/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/子数组的最大和/" itemprop="url">
+                  子数组的最大和
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-22T16:53:30+08:00">
+                2017-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>给定一个数组 arr,求其子数组的最大和 。 例如 arr={1,-2,3,-1,5} 结果为 7。</p>
+</blockquote>
+<h4 id="1-如果采用最笨的方法进行求解那就是从头进行遍历，求出所有的子数组的和，然后返回一个最大值。"><a href="#1-如果采用最笨的方法进行求解那就是从头进行遍历，求出所有的子数组的和，然后返回一个最大值。" class="headerlink" title="1.如果采用最笨的方法进行求解那就是从头进行遍历，求出所有的子数组的和，然后返回一个最大值。"></a>1.如果采用最笨的方法进行求解那就是从头进行遍历，求出所有的子数组的和，然后返回一个最大值。</h4><p>我们可以知道那样的时间复杂度为O(n^2) </p>
+<h4 id="2-所以我们采用一种时间复杂度更低的方法。我们知道一系列数进行累加，只有是非负数的时候，结果才不会随着加数的增加而减少。也就是要求加数的前面之前的和要不小于0才可以。换句话数只要累加和大于等于0，我们就继续累加，如果小于0，我们就清0-从下一个位置重新开始。"><a href="#2-所以我们采用一种时间复杂度更低的方法。我们知道一系列数进行累加，只有是非负数的时候，结果才不会随着加数的增加而减少。也就是要求加数的前面之前的和要不小于0才可以。换句话数只要累加和大于等于0，我们就继续累加，如果小于0，我们就清0-从下一个位置重新开始。" class="headerlink" title="2.所以我们采用一种时间复杂度更低的方法。我们知道一系列数进行累加，只有是非负数的时候，结果才不会随着加数的增加而减少。也就是要求加数的前面之前的和要不小于0才可以。换句话数只要累加和大于等于0，我们就继续累加，如果小于0，我们就清0.从下一个位置重新开始。"></a>2.所以我们采用一种时间复杂度更低的方法。我们知道一系列数进行累加，只有是非负数的时候，结果才不会随着加数的增加而减少。也就是要求加数的前面之前的和要不小于0才可以。换句话数只要累加和大于等于0，我们就继续累加，如果小于0，我们就清0.从下一个位置重新开始。</h4><p>代码如下：</p>
+<pre><code>public class MaxSubArr {
+public static void main(String[] args) {
+    int[] arr={1,-2,3,-1,5};
+    System.out.println(getMaxSubArr(arr));
+}
+
+public static int getMaxSubArr(int arr[]){
+    if(arr.length==0 || arr==null){
+        return -1;
+    }
+    int max=arr[0];
+    int cur=arr[0];
+    for(int i=1;i&lt;arr.length;i++){
+        cur=cur+arr[i];
+        max=Math.max(max, cur);
+        cur=Math.max(0, cur);//如果当前值为负，就从0重新开始.
+    }
+    return max;
+}
+</code></pre><p>}</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/22/java序列化及反序列化/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/java序列化及反序列化/" itemprop="url">
+                  java序列化及反序列化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-22T14:17:10+08:00">
+                2017-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="java序列化、反序列化"><a href="#java序列化、反序列化" class="headerlink" title="java序列化、反序列化"></a>java序列化、反序列化</h4><h5 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h5><blockquote>
+<p>把对象转换为字节序列的过程称为对象的序列化。把字节序列恢复为对象的过程称为对象的反序列化。</p>
+</blockquote>
+<p>对象的序列化主要有两种用途：  </p>
+<ol>
+<li>把对象的字节序列永久地保存到硬盘上，通常存放在一个文件中；  </li>
+<li>在网络上传送对象的字节序列。</li>
+</ol>
+<p>　　在很多应用中，需要对某些对象进行序列化，让它们离开内存空间，入住物理硬盘，以便长期保存。比如最常见的是Web服务器中的Session对象，当有 10万用户并发访问，就有可能出现10万个Session对象，内存可能吃不消，于是Web容器就会把一些seesion先序列化到硬盘中，等要用了，再把保存在硬盘中的对象还原到内存中。<br>当两个进程在进行远程通信时，彼此可以发送各种类型的数据。无论是何种类型的数据，都会以二进制序列的形式在网络上传送。发送方需要把这个Java对象转换为字节序列，才能在网络上传送；接收方则需要把字节序列再恢复为Java对象。<br>序列化反序列化需要注意的是：</p>
+<ul>
+<li>反序列化时候，必须提供class文件。否则会报<code>ClassNotFoundException</code>因为反序列化读取的是java对象的数据而不是java类。</li>
+<li>如果一个对象包含引用类型，那么引用的类也得是可序列化的。程序会默认进行序列化的。<h5 id="二、序列化的操作–实现seriallizable接口"><a href="#二、序列化的操作–实现seriallizable接口" class="headerlink" title="二、序列化的操作–实现seriallizable接口"></a>二、序列化的操作–实现seriallizable接口</h5>若想将一个对象的字节序列保存起来，那么该对象就必须得实现序列化的接口。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">import java.io.FileInputStream;</div><div class="line">import java.io.FileNotFoundException;</div><div class="line">import java.io.FileOutputStream;</div><div class="line">import java.io.IOException;</div><div class="line">import java.io.ObjectInputStream;</div><div class="line">import java.io.ObjectOutputStream;</div><div class="line">import java.io.Serializable;</div><div class="line"></div><div class="line">public class TestTransient  &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		People p = new People();</div><div class="line">		p.setAge(25);</div><div class="line">		p.setName(&quot;小A&quot;);</div><div class="line">		// 将对象p写入文件中</div><div class="line">		try &#123;</div><div class="line">			ObjectOutputStream os = new ObjectOutputStream(</div><div class="line">					new FileOutputStream(&quot;D:/p.text&quot;));</div><div class="line">			os.writeObject(p);</div><div class="line">		&#125; catch (FileNotFoundException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; catch (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		// 将对象读取出来</div><div class="line">		try &#123;</div><div class="line"></div><div class="line">			ObjectInputStream is = new ObjectInputStream(new FileInputStream(</div><div class="line">					&quot;D:/p.text&quot;));</div><div class="line">			People p1 = (People) is.readObject();</div><div class="line">			System.out.println(p1.getName());</div><div class="line">			System.out.println(p1.getAge());</div><div class="line">		&#125; catch (FileNotFoundException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; catch (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; catch (ClassNotFoundException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">class People implements Serializable&#123;</div><div class="line">        private static final long serialVersionUID = -1447110602118809700L;</div><div class="line">	private String name;</div><div class="line"></div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private int age;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如上，我们将People对象序列化和反序列化，那么我就得让People类实现Serializable接口或者Externalizable接口。Externalizable接口继承自 Serializable接口，实现Externalizable接口的类完全由自身来控制序列化的行为，而仅实现Serializable接口的类可以采用默认的序列化方式 。<br>在上面的代码中我们使用java.io.ObjectOutputStream代表对象输出流，它的writeObject(Object obj)方法可对参数指定的obj对象进行序列化，把得到的字节序列写到一个目标输出流中。<br>java.io.ObjectInputStream代表对象输入流，它的readObject()方法从一个源输入流中读取字节序列，再把它们反序列化为一个对象，并将其返回。运行结果如下：  </p>
+<blockquote>
+<p>小A<br>25  </p>
+<h5 id="二、实现Externalizable接口"><a href="#二、实现Externalizable接口" class="headerlink" title="二、实现Externalizable接口"></a>二、实现Externalizable接口</h5><p>实现该接口的类需要通过实现writeExternal() 和 Readexternal()方法来实现实现序列化和反序列化。除此之外，实现该接口的类必须要有非空的构造函数，因为通过Externalizable是通过构造函数来实现序列化的。性能略好，但是编程复杂。</p>
+<h5 id="三、serialVersionUID"><a href="#三、serialVersionUID" class="headerlink" title="三、serialVersionUID"></a>三、serialVersionUID</h5><p>serialVersionUID字面的意思是序列化的版本号，凡是实现Serializable接口的类都有一个表示序列化版本标识符的静态变量。如果没有写serialVersionUID ，eclipse会有提示。其中serialVersionUID有两种方式，一种是default serialVersionUID=1L.另一种是generated serialVersionUID,也就是根绝类的信息等生成的=-1447110602118809700L，这个值不是固定的。下面我们看一下这个serialVersionUID有什么作用，所以我们去掉serialVersionUID。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class People implements Serializable &#123;</div><div class="line">	private String name;</div><div class="line">	private int age;</div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>我们在People类中去掉serialVersionUID，然后执行上面的序列化操作后，我们发现结果是正确的，看起来serialVersionUID也没起什么作用呀。那serialVersionUID到底有什么用呢？我们这次将People类增加一个sex属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class People implements Serializable &#123;</div><div class="line">	private String name;</div><div class="line">	private int age;</div><div class="line">	private String sex;</div><div class="line"></div><div class="line">	public String getSex() &#123;</div><div class="line">		return sex;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setSex(String sex) &#123;</div><div class="line">		this.sex = sex;</div><div class="line">	&#125;</div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后我们执行反序列化操作，也就是在硬盘内我们读入对象，会发现抛出了如下的异常信息。</p>
+<blockquote>
+<p><code>java.io.InvalidClassException: com.java.People; local class incompatible: stream classdesc serialVersionUID = -1447110602118809700, local class serialVersionUID = -7441962391401350150</code></p>
+</blockquote>
+<p>意思就是说，文件流中的class和classpath中的class，也就是修改过后的class，不兼容了，处于安全机制考虑，程序抛出了错误，并且拒绝载入。那么如果我们真的有需求要在序列化后添加一个字段或者方法呢？应该怎么办？那就是自己去指定serialVersionUID。在TestSerialversionUID例子中，没有指定People类的serialVersionUID的，那么java编译器会自动给这个class进行一个摘要算法，类似于指纹算法，只要这个文件 多一个空格，得到的UID就会截然不同的，可以保证在这么多类中，这个编号是唯一的。所以，添加了一个字段后，由于没有显示指定 serialVersionUID，编译器又为我们生成了一个UID，当然和前面保存在文件中的那个不会一样了，于是就出现了2个序列化版本号不一致的错误。因此，只要我们自己指定了serialVersionUID，就可以在序列化后，去添加一个字段，或者方法，而不会影响到后期的还原，还原后的对象照样可以使用，而且还多了方法或者属性可以用。<br>下面我们为People类加上SerialversionUID，也就是之前的People类中的serialVersionUID，看一下效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">public class TestTransient &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// 将对象读取出来</div><div class="line">		try &#123;</div><div class="line"></div><div class="line">			ObjectInputStream is = new ObjectInputStream(new FileInputStream(</div><div class="line">					&quot;D:/p.text&quot;));</div><div class="line">			People p1 = (People) is.readObject();</div><div class="line">			System.out.println(p1.getName());</div><div class="line">			System.out.println(p1.getAge());</div><div class="line">			System.out.println(p1.getSex());</div><div class="line">		&#125; catch (FileNotFoundException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; catch (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; catch (ClassNotFoundException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">class People implements Serializable &#123;</div><div class="line">	/**</div><div class="line">	 * </div><div class="line">	 */</div><div class="line">	private static final long serialVersionUID = -1447110602118809700L;</div><div class="line">	private String name;</div><div class="line">	private int age;</div><div class="line">	private String sex;</div><div class="line"></div><div class="line">	public String getSex() &#123;</div><div class="line">		return sex;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setSex(String sex) &#123;</div><div class="line">		this.sex = sex;</div><div class="line">	&#125;</div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行正确。综上，我们只要指定了serialVersionUID，那么这个serialVersionUID就固定了，不会随着你对类的修改而变化。所以在你修改类结构后还是可以正确的进行序列化和反序列化。</p>
+<p>如果一个Teacher类有一个Student属性。那么<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Srudent s=new Student();</div><div class="line">Teacher t1=new Teacher(s);  </div><div class="line">Teacher t2=new Teacher(s);</div></pre></td></tr></table></figure></p>
+<p>可能会创建出3个Student对象。因为假如首先创建t1,会自动将s序列化，然后创建t2又会序列化一个s.最后再次序列化一个s。但是如果是这样的我们执行反序列化会得到不一样的对象，与我们的目的是相违背的。那么序列化是采用什么样的方式呢？采用的是序列化到磁盘的对象都有一个唯一的编号。当程序试图序列化一个对象时，会看该对象是否已经序列化了，若没有就进行序列化。否则直接返回已经序列化的编号。</p>
+<h5 id="四、Transient关键字"><a href="#四、Transient关键字" class="headerlink" title="四、Transient关键字"></a>四、Transient关键字</h5><p>今天看ArrayList源码时，看到了<code>private transient Object[] elementData;</code> 想起之前多次看到transient关键字，但是并没有深究有什么作用，所以今天就打算简单的研究一下。</p>
+<blockquote>
+<p>变量修饰符，如果用transient声明一个实例变量(只能修饰实例变量)，当对象存储时，它的值不需要维持。换句话来说就是，用transient关键字标记的成员变量不参与序列化过程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">package com.java;</div><div class="line"></div><div class="line">import java.io.FileInputStream;</div><div class="line">import java.io.FileNotFoundException;</div><div class="line">import java.io.FileOutputStream;</div><div class="line">import java.io.IOException;</div><div class="line">import java.io.ObjectInputStream;</div><div class="line">import java.io.ObjectOutputStream;</div><div class="line">import java.io.Serializable;</div><div class="line"></div><div class="line">public class TestTransient &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		People p=new People();</div><div class="line">		p.setName(&quot;小A&quot;);</div><div class="line">		p.setAge(20);</div><div class="line">		p.setSex(&quot;男&quot;);</div><div class="line">		//将对象存储</div><div class="line">		try &#123;</div><div class="line">			ObjectOutputStream oo=new ObjectOutputStream(new FileOutputStream(&quot;D:/p.text&quot;));</div><div class="line">			oo.writeObject(p);</div><div class="line">			oo.close();</div><div class="line">		&#125; catch (FileNotFoundException e1) &#123;</div><div class="line">			e1.printStackTrace();</div><div class="line">		&#125; catch (IOException e1) &#123;</div><div class="line">			e1.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		// 将对象读取出来</div><div class="line">		try &#123;</div><div class="line"></div><div class="line">			ObjectInputStream is = new ObjectInputStream(new FileInputStream(</div><div class="line">					&quot;D:/p.text&quot;));</div><div class="line">			People p1 = (People) is.readObject();</div><div class="line">			System.out.println(p1.getName());</div><div class="line">			System.out.println(p1.getAge());</div><div class="line">			System.out.println(p1.getSex());</div><div class="line">		&#125; catch (FileNotFoundException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; catch (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; catch (ClassNotFoundException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">class People implements Serializable &#123;</div><div class="line">	/**</div><div class="line">	 * </div><div class="line">	 */</div><div class="line">	private static final long serialVersionUID = -1447110602118809700L;</div><div class="line">	private transient String name;</div><div class="line">	private int age;</div><div class="line">	private String sex;</div><div class="line"></div><div class="line">	public String getSex() &#123;</div><div class="line">		return sex;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setSex(String sex) &#123;</div><div class="line">		this.sex = sex;</div><div class="line">	&#125;</div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>我们将name属性 设置为transient类型的，然后进行序列化和反序列化操作。得到的结果如下：</p>
+<blockquote>
+<p>null<br>20<br>男</p>
+</blockquote>
+<p>由此我们可以看到，得到的name为null，说明name并没有被序列化。<br>transient只能修饰成员变量。序列化事针对对象的，所以静态变量是永远不会被序列化的。</p>
+<h5 id="五、单例的序列化"><a href="#五、单例的序列化" class="headerlink" title="五、单例的序列化"></a>五、单例的序列化</h5><p>对单例对象的序列化可能就破坏了其单例模式。测试如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">import java.io.File;</div><div class="line">import java.io.FileInputStream;</div><div class="line">import java.io.FileOutputStream;</div><div class="line">import java.io.IOException;</div><div class="line">import java.io.ObjectInputStream;</div><div class="line">import java.io.ObjectOutputStream;</div><div class="line">import java.io.Serializable;</div><div class="line"></div><div class="line">public class TestResolve &#123;</div><div class="line">	public static void main(String[] args) throws IOException &#123;</div><div class="line">		Singleton instance = Singleton.getInstance();</div><div class="line">		ObjectOutputStream out = null;</div><div class="line">		ObjectInputStream in = null;</div><div class="line">		try &#123;</div><div class="line">			out = new ObjectOutputStream(new FileOutputStream(new File(&quot;instance.txt&quot;)));</div><div class="line">			out.writeObject(instance);</div><div class="line">			in = new ObjectInputStream(new FileInputStream(new File(&quot;instance.txt&quot;)));</div><div class="line">			Singleton instance1 = (Singleton) in.readObject();</div><div class="line">			System.out.println(instance == instance1);</div><div class="line">		&#125; catch (IOException | ClassNotFoundException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; finally &#123;</div><div class="line">			out.close();</div><div class="line">			in.close();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void name() &#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Singleton implements Serializable &#123;</div><div class="line">	private static final long serialVersionUID = 1L;</div><div class="line"></div><div class="line">	private Singleton() &#123;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static Singleton instance = new Singleton();</div><div class="line"></div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		return instance;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/*private Object readResolve() &#123;</div><div class="line">		return instance;</div><div class="line">	&#125;*/</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String toString() &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		return &quot;singleton&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>结果：false  </p>
+</blockquote>
+<p>说明了序列化后的对象跟之前的并不是同一个。那么这么做就不满足单例了。但是，我们只要去掉注释，就会得到true的结果。原因就是我们实现了一个readReslove方法，该方法就会保证你反序列化得到的结果就是单例的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/19/单例模式/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/19/单例模式/" itemprop="url">
+                  单例模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-19T21:42:30+08:00">
+                2017-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><blockquote>
+<p>单例模式要求整个工程中只有这一个对象。比如在实际生活中，每台计算机可以有若干个打印机，但只能有一个Printer Spooler，以避免两个打印作业同时输出到打印机中。每台计算机可以有若干通信端口，系统应当集中管理这些通信端口，以避免一个通信端口同时被两个请求同时调用。  单例模式分为三种，分别是<em>懒汉模式</em> ，<em>饿汉模式</em>， <em>登记表单例模式</em></p>
+</blockquote>
+<p>若想要只有一个对象，怎么才能实现呢？其实也就是说不允许程序在其他地方new对象。那么我们只要将构造方法设置为private,就可以禁止new对象了。但是我们必须还要能够获得这个对象，那么就得提供一个static的方法来return该对象。这就是单例模式的基本思想。</p>
+<h4 id="1-懒汉模式"><a href="#1-懒汉模式" class="headerlink" title="1.懒汉模式"></a>1.懒汉模式</h4><p>所谓的懒汉模式，顾名思义就是非常懒，只有在用到的时候才会去创建对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line"></div><div class="line">	private Singleton() &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static Singleton singleton = null;</div><div class="line"></div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		if (singleton == null) &#123;</div><div class="line">			singleton = new Singleton();</div><div class="line">		&#125;</div><div class="line">		return singleton;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>首先我们的构造方法为private,这就避免其它类可以创建该对象。</li>
+<li>然后有一个static的getInstance()方法，返回对象实例。之所以为static是因为可以通过class来直接调用，而不是通过对象来调用该方法。</li>
+<li>为什么<em>private static Singleton singleton = null;</em> 实例要是static呢？这是因为getInstance()方法是static的，在static的方法内不能调用非static变量。<br>==不是只要构造方法为private的，就是单例模式。==<br>比如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line"></div><div class="line">	private Singleton() &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static Singleton singleton = null;</div><div class="line"></div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		if (singleton == null) &#123;</div><div class="line">			return new Singleton();</div><div class="line">		&#125;</div><div class="line">		return singleton;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这并不是单例模式，因为每次调用getInstance()方法都会new不同的对象。<br>在单线程的条件下，这种单例模式是成立的。但是假如在多线程的条件下，有两个线程A,B同时调用getInstance方法。当线程A通过了if()语句，但是还没有new的时候，线程B也到达了if()判断。那么这时候由于A还没有new对象呢，所以B也会new对象，那么这就不仅仅产生了一个对象实例。所以为了避免这种情况，我们需要对其进行加锁操作。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class LazySingleton &#123;</div><div class="line"></div><div class="line">	private LazySingleton() &#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static LazySingleton singleton = null;</div><div class="line"></div><div class="line">	public static LazySingleton getInstance() &#123;</div><div class="line">		synchronized (LazySingleton.class) &#123;</div><div class="line">			if (singleton == null) &#123;</div><div class="line">				singleton = new LazySingleton();</div><div class="line">			&#125;</div><div class="line">			return singleton;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的加锁方式确实能避免多线程并发造成的实例不唯一的情况，但是这么做就需要每次都得判断锁，增大了开销。所以我们更推荐采用下面的加锁方式，双重判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class LazySingleton &#123;</div><div class="line"></div><div class="line">	private LazySingleton() &#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static LazySingleton singleton = null;</div><div class="line"></div><div class="line">	public static LazySingleton getInstance() &#123;</div><div class="line">		if (singleton == null) &#123;</div><div class="line">			synchronized (LazySingleton.class) &#123;</div><div class="line">				if (singleton == null) &#123;</div><div class="line">					singleton = new LazySingleton();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return singleton;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="2-饿汉模式"><a href="#2-饿汉模式" class="headerlink" title="2.饿汉模式"></a>2.饿汉模式</h4><p>饿汉模式形象的表明了一个很饿的老汉将会自己动手去new实例对象，而不会等待用到的时候再去new，因为他饿啊。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public class Singleton1 &#123;</div><div class="line"></div><div class="line">	private Singleton1() &#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static final Singleton1 singleton = new Singleton1();</div><div class="line"></div><div class="line">	public static Singleton1 getInstance() &#123;</div><div class="line"></div><div class="line">		return singleton;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>饿汉模式与懒汉模式的差异就在于是否先new对象。上面的代码中不加final也是可以的，因为static是在类加载过程中进行的，并且只加载一次。  </p>
+<h4 id="3-静态内部类实现单例模式"><a href="#3-静态内部类实现单例模式" class="headerlink" title="3.静态内部类实现单例模式"></a>3.静态内部类实现单例模式</h4><p>使用内部类的方式实现单例既可以做到延迟加载，又不必使用同步关键字，是一种比较完善的方式。</p>
+<pre><code>public class StaticSingleton{
+    private StaticSingleton(){
+
+    }
+    private static class SingletonHoder{
+        private static StaticSingleton instance=new StaticSingleton();
+    }
+    public static StaticSingleton getInstance(){
+        return SingletonHoder.instance;
+    }
+}
+</code></pre><p>当StaticSingleton被加载时,其内部类不会被初始化。实例的建立是在类被加载时完成，故对多线程友好。  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/19/工厂模式/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -718,763 +1548,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/18/java中comparable 和comparator/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/java中comparable 和comparator/" itemprop="url">
-                  java中comparable 和comparator
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-18T19:25:10+08:00">
-                2017-02-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>在java中,如果想实现两个对象之间的比较，那么我们有两种选择。一是实现<code>comparable&lt;T&gt;</code>接口中的<code>int compareTo(T o)</code>方法。二是实现<code>comparator</code>接口中的<code>int compare&lt;T&gt;（T o1,T o2）</code>方法。上面的两种方法都返回一个int值,若大于0，说明第一个对象大，等于0表示相等，小于0，说明对象小.下面介绍一下两者的区别。</p>
-<h4 id="1-comparable-–自己与其他对象比较"><a href="#1-comparable-–自己与其他对象比较" class="headerlink" title="1.comparable –自己与其他对象比较"></a>1.comparable –自己与其他对象比较</h4><p>我们看到comparable接口中的用于比较的<code>compareTo&lt;T&gt;(T o)</code>方法,参数只有一个。并且通过这个方法名<code>compareTo()</code>也可以推断是自己与其他对象比较。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.Collections;</div><div class="line">import java.util.Iterator;</div><div class="line"></div><div class="line">public class TestComparable implements Comparable&lt;TestComparable&gt; &#123;</div><div class="line">	private int version;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public int compareTo(TestComparable o) &#123;// 重写compareTo方法，只有一个参数</div><div class="line">		return this.version - o.version;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public TestComparable(int version) &#123;</div><div class="line">		super();</div><div class="line">		this.version = version;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String toString() &#123;</div><div class="line">		return &quot;TestComparable [version=&quot; + version + &quot;]&quot;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		TestComparable t1 = new TestComparable(1);</div><div class="line">		TestComparable t2 = new TestComparable(3);</div><div class="line">		ArrayList&lt;TestComparable&gt; list = new ArrayList&lt;TestComparable&gt;();</div><div class="line">		list.add(t2);</div><div class="line">		list.add(t1);</div><div class="line">		Collections.sort(list);//用collections排序</div><div class="line">		for (Iterator iterator = list.iterator(); iterator.hasNext();) &#123;</div><div class="line">			TestComparable testComparable = (TestComparable) iterator.next();</div><div class="line">			System.out.println(testComparable);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">结果：</div><div class="line">TestComparable [version=1]</div><div class="line">TestComparable [version=3]</div><div class="line"></div><div class="line">我们看到 collections.sort 如下</div><div class="line">public static &lt;T extends Comparable&lt;? super T&gt;&gt; void sort(List&lt;T&gt; list) &#123;</div><div class="line">        list.sort(null);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h4 id="2-comparator-–第三方的比较机构"><a href="#2-comparator-–第三方的比较机构" class="headerlink" title="2.comparator –第三方的比较机构"></a>2.comparator –第三方的比较机构</h4><p>comparator类似于一个三方比较机构，专门用来处理那些比较双方不能处理的问题。也就是说比较双方可能没有实现<code>comparable</code>接口,或者是比较的方式不是我们想要的。举个例子，比如Integer类是按照大小进行比较，但是我们想按照绝对值进行比较等等这种情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">package com.test.oj;</div><div class="line"></div><div class="line">import java.util.Arrays;</div><div class="line">import java.util.Comparator;</div><div class="line"></div><div class="line">public class TestComparator &#123;</div><div class="line">	int version;</div><div class="line"></div><div class="line">	public TestComparator(int version) &#123;</div><div class="line">		super();</div><div class="line">		this.version = version;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String toString() &#123;</div><div class="line">		return &quot;TestComparator [version=&quot; + version + &quot;]&quot;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		TestComparator t1 = new TestComparator(1);</div><div class="line">		TestComparator t2 = new TestComparator(3);</div><div class="line">		TestComparator[] t = &#123; t2, t1 &#125;;</div><div class="line">		Arrays.sort(t, new cm());</div><div class="line">		System.out.println(t[0]);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 这就是所谓的地方比较机构 ，并且该机构定义了比较的规则</div><div class="line">class cm implements Comparator&lt;TestComparator&gt; &#123;</div><div class="line">	@Override</div><div class="line">	public int compare(TestComparator o1, TestComparator o2) &#123;</div><div class="line">		return o1.version - o2.version;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">结果：</div><div class="line">TestComparator [version=1]</div></pre></td></tr></table></figure></p>
-<h4 id="3-常用数据类型的比较"><a href="#3-常用数据类型的比较" class="headerlink" title="3.常用数据类型的比较"></a>3.常用数据类型的比较</h4><ul>
-<li><p>Integer  等数字类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public final class Integer extends Number implements Comparable&lt;Integer&gt; //实现Comparable</div><div class="line">public int compareTo(Integer anotherInteger) &#123;</div><div class="line">        return compare(this.value, anotherInteger.value);</div><div class="line">    &#125;</div><div class="line">public static int compare(int x, int y) &#123;</div><div class="line">        return (x &lt; y) ? -1 : ((x == y) ? 0 : 1);</div><div class="line">    &#125;//就是按照大小进行比较的</div></pre></td></tr></table></figure>
-</li>
-<li><p>String 类型  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//实现comparable接口</div><div class="line">public final class String </div><div class="line">    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence</div><div class="line">    //重写compareTo方法</div><div class="line">    public int compareTo(String anotherString) &#123;</div><div class="line">        int len1 = value.length;</div><div class="line">        int len2 = anotherString.value.length;</div><div class="line">        int lim = Math.min(len1, len2);</div><div class="line">        char v1[] = value;</div><div class="line">        char v2[] = anotherString.value;</div><div class="line"></div><div class="line">        int k = 0;</div><div class="line">        while (k &lt; lim) &#123;//先从首字母开始判断</div><div class="line">            char c1 = v1[k];</div><div class="line">            char c2 = v2[k];</div><div class="line">            if (c1 != c2) &#123;</div><div class="line">                return c1 - c2;</div><div class="line">            &#125;</div><div class="line">            k++;</div><div class="line">        &#125;</div><div class="line">        return len1 - len2;//若前面的字母都相等，则比较长度</div><div class="line">    &#125;</div></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2016/11/24/两个栈实现一个队列/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/24/两个栈实现一个队列/" itemprop="url">
-                  两个栈实现一个队列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-24T19:59:54+08:00">
-                2016-11-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。<br>用栈来实现队列是不难的，但是需要注意以下两个点。  </p>
-</blockquote>
-<ul>
-<li>当push的时候，Stack2必须为空，不为空的话，就先将Stack2的数据存入Stack1中。然后再向Stack1 push。</li>
-<li>当pop的时候，Stack1必须空，不空，就将Stack1的数据存入Stack2中。然后再从Stack2 pop。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">   import java.util.Stack;</div><div class="line">   public class StackQueue &#123;</div><div class="line">Stack&lt;Integer&gt; stack1 = new Stack&lt;Integer&gt;();</div><div class="line">   Stack&lt;Integer&gt; stack2 = new Stack&lt;Integer&gt;();</div><div class="line">   public void push(int node) &#123;</div><div class="line">   	while(!stack2.isEmpty())&#123;</div><div class="line">   		int num=stack2.pop();</div><div class="line">   		stack1.add(num);</div><div class="line">   	&#125;</div><div class="line">       stack1.add(node);</div><div class="line">   &#125;</div><div class="line">   public int pop() &#123;</div><div class="line">   	while(!stack1.isEmpty())&#123;</div><div class="line">   		int num=stack1.pop();</div><div class="line">   		stack2.add(num);</div><div class="line">   	&#125;</div><div class="line">   	return stack2.pop();</div><div class="line">   &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2016/11/10/选钱博弈问题/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/10/选钱博弈问题/" itemprop="url">
-                  选钱博弈问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-10T09:02:26+08:00">
-                2016-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="选钱博弈问题"><a href="#选钱博弈问题" class="headerlink" title="选钱博弈问题"></a>选钱博弈问题</h3><blockquote>
-<p>下面的这道问题是某公司的校招题，近日听了程云老师的讲解，觉得恍然大悟。遂总结如下：</p>
-</blockquote>
-<h4 id="【题目】"><a href="#【题目】" class="headerlink" title="【题目】"></a>【题目】</h4><p>给定一个整型数组money，代表数值不同的钱排成一条线。玩家A和玩家B依次拿走每张钱，规定玩家A先拿，玩家B后拿，但是每个玩家每次只能拿走最左或最右的钱，玩家A和玩家B都绝顶聪明。请返回最后获胜者的钱数。</p>
-<h4 id="【举例】"><a href="#【举例】" class="headerlink" title="【举例】"></a>【举例】</h4><p>arr=[1,2,100,4]。<br>开始时玩家A只能拿走1或4。如果玩家A拿走1，则排列变为[2,100,4]，接下来玩家B可以拿走2或4，然后继续轮到玩家A。如果开始时玩家A拿走4，则排列变为[1,2,100]，接下来玩家B可以拿走1或100，然后继续轮到玩家A。玩家A作为绝顶聪明的人不会先拿4，因为拿4之后，玩家B将拿走100。所以玩家A会先拿1，让排列变为[2,100,4]，接下来玩家B不管怎么选，100都会被玩家A拿走。玩家A会获胜，分数为101。所以返回101。<br>arr=[1,100,2]。<br>开始时玩家A不管拿1还是2，玩家B作为绝顶聪明的人，都会把100拿走。玩家B会获胜，分数为100。所以返回100。<br> ==所以可以看到没有一定的方法保证先拿的钱数一定最多==</p>
-<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p> 因为A、B都是绝顶聪明的，所以假设A先拿，他有两种方式即拿第一个或最后一个。但是不论他拿第一个还是最后一个之后，都会轮到B拿。这时的A就变成了后拿。<br> 我们用firstGet(money[],i,j)表示先拿,lastGet(money[],i,j)表示后拿。</p>
-<ul>
-<li>如果A第一次拿了第一个，那么A下一次就会后拿剩下的，也就是lastGet(money[],i+1,j);</li>
-<li><p>如果A第一次拿了最后一个，那么A下一次也会后拿剩下的，也就是lastGet(money[],i,j-1);  </p>
-<p>因为A是聪明的，所以他会选择先拿第一个或最后一个使结果最大的。<br>同时B也是聪明的，他也会选择使结果对他有利的，也就是说A的lastGet()=小的firstGet()。<br>递归下去。终止的条件的条件为，最后只剩一张钱，那么就是getFirst拿走。<br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">import java.util.*;</div><div class="line">public class Money&#123;</div><div class="line">	public static void main(String [] args)&#123;</div><div class="line">		int money[]=&#123;2,3,5,9&#125;;</div><div class="line">		System.out.println(firstGet(money,1,money.length-1));</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static int firstGet(int[] money,int i,int j)&#123;</div><div class="line">		if(i==j)&#123;                //如果只剩一张钱，先拿的拿走</div><div class="line">			return money[i];</div><div class="line">		&#125;else&#123;</div><div class="line">		       //先拿的判断是拿第一张好，还是最后一张好。</div><div class="line">			return Math.max(money[i]+lastGet(money,i+1,j),money[j]+lastGet(money,i,j-1));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	public static int lastGet(int[] money,int i,int j)&#123;</div><div class="line">		if(i==j)&#123;</div><div class="line">			return 0;	</div><div class="line">		&#125;else&#123;</div><div class="line">		        //因为是后拿，大的已经被选走，所以就等于先拿下的。</div><div class="line">			return Math.min(firstGet(money,i+1,j),firstGet(money,i,j-1));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2016/10/24/二维矩阵的查找/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/24/二维矩阵的查找/" itemprop="url">
-                  二维矩阵的查找
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-24T13:42:48+08:00">
-                2016-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>给定一个二维矩阵，该矩阵按行、按列都是递增的。给定一个数字，判断是否在该矩阵内。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">public class MatrixSearch&#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		int a[][]=&#123;&#123;1,2,3,&#125;,&#123;4,5,6&#125;,&#123;7,8,9&#125;&#125;;</div><div class="line">		System.out.println(isExit(a,5));</div><div class="line">	&#125;</div><div class="line">/*</div><div class="line"> 因为二维数组行和列都是有序的，所以从右上角x开始找。如果比x小说明只能在该行的左侧，若比x大</div><div class="line"> 说明只能在x的下方。若将该二维矩阵都搜索一遍仍没找到，就说明不存在，返回false;</div><div class="line">*/</div><div class="line">public static boolean isExit(int [][] a,int target)&#123;</div><div class="line">	if (a==null || a.length==0) &#123;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	int rows=a.length;</div><div class="line">	int i=0 ;</div><div class="line">	int column=a[0].length;</div><div class="line">	int j=column-1;</div><div class="line">	while (i&lt;rows&amp;&amp;j&gt;=0) &#123; //要求在数组的范围内。</div><div class="line">		if(a[i][j]==target)&#123;</div><div class="line">			return true;</div><div class="line">		&#125;else if(a[i][j]&gt;target)&#123;</div><div class="line">			j--;</div><div class="line">		&#125;else if (a[i][j]&lt;target) &#123;</div><div class="line">			i++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">		return false;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2016/09/19/括号匹配/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/19/括号匹配/" itemprop="url">
-                  括号匹配
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-19T10:57:53+08:00">
-                2016-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>左右括号的匹配问题，可以用栈来很好的解决。  </p>
-<ol>
-<li>遇到左括号，就入栈。</li>
-<li>遇到右括号，判断此时栈是否为空。 </li>
-</ol>
-<ul>
-<li>栈为空，说明右括号多。</li>
-<li>不为空，判断栈顶元素与该右括号是否对应，不对应，说明不匹配。如{(};若匹配则出栈。</li>
-</ul>
-<ol>
-<li>最后，遍历整个Str后,若栈为空，说明完全匹配，若栈不空，说明左括号多。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">import java.util.Stack;</div><div class="line">public class BracketMatch&#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		String s=&quot;&#123;[(2+4)+(3-5)/9]*4+1&#125;*&#123;[(2-4)+(3-5)*9]*(4+1)&#125; &quot;;</div><div class="line">		System.out.println(match(s));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static boolean match(String s)&#123;</div><div class="line">		Stack stack=new Stack();</div><div class="line">		char c[]=s.toCharArray();</div><div class="line">		for (int i=0;i&lt;c.length ;i++ ) &#123;</div><div class="line">			if(isLeftBracket(c[i]))&#123;</div><div class="line">				stack.push(c[i]);</div><div class="line">			&#125;else if(isRightBracket(c[i]))&#123;</div><div class="line">				//如果栈为空，说明右括号多</div><div class="line">				if(stack.isEmpty())&#123;</div><div class="line">					return false;</div><div class="line">				&#125;else &#123;</div><div class="line">					//判断栈顶的元素是否和右括号是匹配的</div><div class="line">					if(!stack.peek().equals(resverse(c[i])))&#123;</div><div class="line">						return false;</div><div class="line">					&#125;else&#123;</div><div class="line">						//若匹配则将对应的左括号出栈</div><div class="line">						stack.pop();</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		//如果所有的字符都匹配结束，栈也为空，那么就表示匹配，否则就是左括号多</div><div class="line">		if (stack.isEmpty()) &#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	//判断是否为左括号</div><div class="line">	public static boolean isLeftBracket(char c)&#123;</div><div class="line">		if(c==&apos;&#123;&apos;||c==&apos;[&apos;||c==&apos;(&apos;)&#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	//判断是否为右括号</div><div class="line">	public static boolean isRightBracket(char c)&#123;</div><div class="line">		if(c==&apos;&#125;&apos;||c==&apos;]&apos;||c==&apos;)&apos;)&#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	//找出与右括号对应的左括号</div><div class="line">	public static char resverse(char c)&#123;</div><div class="line">		char res=&apos; &apos;;</div><div class="line">		if(c==&apos;&#125;&apos;)&#123;</div><div class="line">			res= &apos;&#123;&apos;;</div><div class="line">		&#125;else if(c==&apos;]&apos;)&#123;</div><div class="line">			res= &apos;[&apos;;</div><div class="line">		&#125;else if(c==&apos;)&apos;)&#123;</div><div class="line">			res= &apos;(&apos;;</div><div class="line">		&#125;</div><div class="line">		return res;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1524,7 +1597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1542,7 +1615,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
