@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数学思想," />
+  <meta name="keywords" content="组合," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="给定一个正数N,求其阶乘中末尾包含的0的个数。比如5！=120末尾有一个0.">
-<meta name="keywords" content="数学思想">
+<meta name="description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。123456789101112131415161718192021222324public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;">
+<meta name="keywords" content="组合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="N!中末尾0的个数">
-<meta property="og:url" content="http://wangkkai.github.io/2017/05/21/N！中末尾0的个数/index.html">
+<meta property="og:title" content="组合问题">
+<meta property="og:url" content="http://wangkkai.github.io/2017/06/26/组合问题/index.html">
 <meta property="og:site_name" content="wangkai&#39;s blog">
-<meta property="og:description" content="给定一个正数N,求其阶乘中末尾包含的0的个数。比如5！=120末尾有一个0.">
-<meta property="og:updated_time" content="2017-05-21T01:36:31.572Z">
+<meta property="og:description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。123456789101112131415161718192021222324public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;">
+<meta property="og:updated_time" content="2017-06-26T13:40:48.321Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="N!中末尾0的个数">
-<meta name="twitter:description" content="给定一个正数N,求其阶乘中末尾包含的0的个数。比如5！=120末尾有一个0.">
+<meta name="twitter:title" content="组合问题">
+<meta name="twitter:description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。123456789101112131415161718192021222324public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://wangkkai.github.io/2017/05/21/N！中末尾0的个数/"/>
+  <link rel="canonical" href="http://wangkkai.github.io/2017/06/26/组合问题/"/>
 
 
 
 
 
-  <title> N!中末尾0的个数 | wangkai's blog </title>
+  <title> 组合问题 | wangkai's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/05/21/N！中末尾0的个数/">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/06/26/组合问题/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wangkai">
@@ -294,7 +294,7 @@
             
             
               
-                N!中末尾0的个数
+                组合问题
               
             
           </h1>
@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-21T08:59:05+08:00">
-                2017-05-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T21:37:15+08:00">
+                2017-06-26
               </time>
             
 
@@ -350,7 +350,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/05/21/N！中末尾0的个数/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/06/26/组合问题/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -378,13 +378,8 @@
 
       
         <blockquote>
-<p>给定一个正数N,求其阶乘中末尾包含的0的个数。比如5！=120末尾有一个0.  </p>
+<p>给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public class Main &#123;</div><div class="line">    static ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String s = &quot;ABC&quot;;</div><div class="line">        combine(s, 0, 3, 2, new String());</div><div class="line"></div><div class="line">        for (String tmp :</div><div class="line">                list) &#123;</div><div class="line">            System.out.println(tmp);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void combine(String s, int low, int high, int num, String res) &#123;</div><div class="line">        if (num == 0) &#123;    //个数m</div><div class="line">            list.add(res);</div><div class="line">        &#125; else &#123;</div><div class="line">            for (int i = low; i &lt; high; i++) &#123;</div><div class="line">                combine(s, i + 1, high, num - 1, res + s.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 </blockquote>
-<a id="more"></a>
-<p>这题如果按照正常的思路，求N！然后再结果中看有多少个0，那是很耗时的。有没有简单一点的方法呢？答案是当然有。<br>我们首先想一下，什么样的情况下，乘积的结果会有0？那就是2*5的情况下。<br>所以我们只需要算出N！中一共有多少个2，多少个5，然后取2者中较小的即可。但是我们知道，2的个数一定会多于5的。所以我们就只需要查找出现了多少个5即可。<br>N！=N*(N-1)*(N-2)….1<br>我们分别计算每一个乘数当中能分解多少个5相乘，然后累加就是结果.<br>比如5！=5*4*3*2*1<br>其中只有5这个乘数包含了1个5.所以结果为1个0.</p>
-<p>代码很简单如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//N！中结果末尾0的个数</div><div class="line">public static int calZero(int n)&#123;</div><div class="line">    int num=0;</div><div class="line">    for (int i = 1; i &lt;=n ; i++) &#123;</div><div class="line">        int j=i;</div><div class="line">        while(j%5==0)&#123;</div><div class="line">            num++;</div><div class="line">            j=j/5;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return num;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>另一道题与其很相似。题目为N！结果转换为2进制，求2进制中1首次出现的位置。<br>比如：3！=6=110 首次出现的位置是1.  </p>
-<p>我们首先分析一下，一个数如果是奇数，那么其2进制末尾的数一定是1.<br>任意一个奇数*2都会变成偶数，也就是二进制的1会向左移动一位。<br>所以我们只需要判断N!有多少个2相乘。结果+1即可。</p>
 
       
     </div>
@@ -424,7 +419,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数学思想/" rel="tag"># 数学思想</a>
+            <a href="/tags/组合/" rel="tag"># 组合</a>
           
         </div>
       
@@ -437,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/12/Move Zeroes/" rel="next" title="Move Zeroes">
-                <i class="fa fa-chevron-left"></i> Move Zeroes
+              <a href="/2017/06/25/ThreadLocal分析/" rel="next" title="ThreadLocal分析">
+                <i class="fa fa-chevron-left"></i> ThreadLocal分析
               </a>
             
           </div>
@@ -446,10 +441,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/26/最长递增子序列/" rel="prev" title="最长递增子序列">
-                最长递增子序列 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
