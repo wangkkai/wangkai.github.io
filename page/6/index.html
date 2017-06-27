@@ -831,23 +831,21 @@ public static void main(String[] args) {
 <pre><code>public class MaxSubArr {
 public static void main(String[] args) {
     int[] arr={1,-2,3,-1,5};
-    System.out.println(getMaxSubArr(arr));
+    System.out.println(FindGreatestSumOfSubArray(arr));
 }
 
-public static int getMaxSubArr(int arr[]){
-    if(arr.length==0 || arr==null){
-        return -1;
+public static int FindGreatestSumOfSubArray(int[] array) {
+int max = Integer.MIN_VALUE;
+int curr = 0;
+for (int i = 0; i &lt; array.length; i++) {
+    curr += array[i];
+    max = Math.max(max, curr);
+    if (curr &lt; 0) {
+        curr = 0;
     }
-    int max=arr[0];
-    int cur=arr[0];
-    for(int i=1;i&lt;arr.length;i++){
-        cur=cur+arr[i];
-        max=Math.max(max, cur);
-        cur=Math.max(0, cur);//如果当前值为负，就从0重新开始.
-    }
-    return max;
 }
-</code></pre><p>}</p>
+return max;
+</code></pre><p>}<br>}</p>
 
           
         

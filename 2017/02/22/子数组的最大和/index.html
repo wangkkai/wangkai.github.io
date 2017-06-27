@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://wangkkai.github.io/2017/02/22/子数组的最大和/index.html">
 <meta property="og:site_name" content="wangkai&#39;s blog">
 <meta property="og:description" content="给定一个数组 arr,求其子数组的最大和 。 例如 arr={1,-2,3,-1,5} 结果为 7。  1.如果采用最笨的方法进行求解那就是从头进行遍历，求出所有的子数组的和，然后返回一个最大值。我们可以知道那样的时间复杂度为O(n^2)  2.所以我们采用一种时间复杂度更低的方法。我们知道一系列数进行累加，只有是非负数的时候，结果才不会随着加数的增加而减少。也就是要求加数的前面之前的和要不小于">
-<meta property="og:updated_time" content="2017-02-22T08:56:07.844Z">
+<meta property="og:updated_time" content="2017-06-27T07:38:30.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="子数组的最大和">
 <meta name="twitter:description" content="给定一个数组 arr,求其子数组的最大和 。 例如 arr={1,-2,3,-1,5} 结果为 7。  1.如果采用最笨的方法进行求解那就是从头进行遍历，求出所有的子数组的和，然后返回一个最大值。我们可以知道那样的时间复杂度为O(n^2)  2.所以我们采用一种时间复杂度更低的方法。我们知道一系列数进行累加，只有是非负数的时候，结果才不会随着加数的增加而减少。也就是要求加数的前面之前的和要不小于">
@@ -385,23 +385,21 @@
 <pre><code>public class MaxSubArr {
 public static void main(String[] args) {
     int[] arr={1,-2,3,-1,5};
-    System.out.println(getMaxSubArr(arr));
+    System.out.println(FindGreatestSumOfSubArray(arr));
 }
 
-public static int getMaxSubArr(int arr[]){
-    if(arr.length==0 || arr==null){
-        return -1;
+public static int FindGreatestSumOfSubArray(int[] array) {
+int max = Integer.MIN_VALUE;
+int curr = 0;
+for (int i = 0; i &lt; array.length; i++) {
+    curr += array[i];
+    max = Math.max(max, curr);
+    if (curr &lt; 0) {
+        curr = 0;
     }
-    int max=arr[0];
-    int cur=arr[0];
-    for(int i=1;i&lt;arr.length;i++){
-        cur=cur+arr[i];
-        max=Math.max(max, cur);
-        cur=Math.max(0, cur);//如果当前值为负，就从0重新开始.
-    }
-    return max;
 }
-</code></pre><p>}</p>
+return max;
+</code></pre><p>}<br>}</p>
 
       
     </div>
