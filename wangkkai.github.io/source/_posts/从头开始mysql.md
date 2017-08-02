@@ -5,11 +5,33 @@ tags: MySql
 categories: 数据库
 ---
 ```
+
+```
+//将自增的列变为不自增
+alter table  tablename modify columnname int not null;
+```
+alter table的操作
+![](http://oc6shen8h.bkt.clouddn.com/index.jpg)
+//mysql的自定义变量
+SELECT @min_price:=MIN(price),@max_price:=MAX(price) FROM shop;    
+SELECT * FROM shop WHERE price=@min_price OR price=@max_price;
+```
+![](http://oc6shen8h.bkt.clouddn.com/userdefinepara.jpg)
+
+```
+对于自增字段插入时候可以选择null
+
+select LAST_INSERT_ID();//最后插入的id
+
+mysql < mysql-batch-file //mysql的批处理
+
 alter table stu drop column sex;//删除列
 
 alter table stu add column sex varchar(20) not null after name;//指定位置添加列
 
 alter table stu change sex xingbie varchar(20);//改变列名
+
+select database();//显示当前使用的mysql库
 
 mysql -uroot -p
 
