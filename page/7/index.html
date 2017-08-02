@@ -267,6 +267,336 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/19/单例模式/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/19/单例模式/" itemprop="url">
+                  单例模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-19T21:42:30+08:00">
+                2017-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><blockquote>
+<p>单例模式要求整个工程中只有这一个对象。比如在实际生活中，每台计算机可以有若干个打印机，但只能有一个Printer Spooler，以避免两个打印作业同时输出到打印机中。每台计算机可以有若干通信端口，系统应当集中管理这些通信端口，以避免一个通信端口同时被两个请求同时调用。  单例模式分为三种，分别是<em>懒汉模式</em> ，<em>饿汉模式</em>， <em>登记表单例模式</em></p>
+</blockquote>
+<p>若想要只有一个对象，怎么才能实现呢？其实也就是说不允许程序在其他地方new对象。那么我们只要将构造方法设置为private,就可以禁止new对象了。但是我们必须还要能够获得这个对象，那么就得提供一个static的方法来return该对象。这就是单例模式的基本思想。</p>
+<h4 id="1-懒汉模式"><a href="#1-懒汉模式" class="headerlink" title="1.懒汉模式"></a>1.懒汉模式</h4><p>所谓的懒汉模式，顾名思义就是非常懒，只有在用到的时候才会去创建对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line"></div><div class="line">	private Singleton() &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static Singleton singleton = null;</div><div class="line"></div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		if (singleton == null) &#123;</div><div class="line">			singleton = new Singleton();</div><div class="line">		&#125;</div><div class="line">		return singleton;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>首先我们的构造方法为private,这就避免其它类可以创建该对象。</li>
+<li>然后有一个static的getInstance()方法，返回对象实例。之所以为static是因为可以通过class来直接调用，而不是通过对象来调用该方法。</li>
+<li>为什么<em>private static Singleton singleton = null;</em> 实例要是static呢？这是因为getInstance()方法是static的，在static的方法内不能调用非static变量。<br>==不是只要构造方法为private的，就是单例模式。==<br>比如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line"></div><div class="line">	private Singleton() &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static Singleton singleton = null;</div><div class="line"></div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		if (singleton == null) &#123;</div><div class="line">			return new Singleton();</div><div class="line">		&#125;</div><div class="line">		return singleton;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这并不是单例模式，因为每次调用getInstance()方法都会new不同的对象。<br>在单线程的条件下，这种单例模式是成立的。但是假如在多线程的条件下，有两个线程A,B同时调用getInstance方法。当线程A通过了if()语句，但是还没有new的时候，线程B也到达了if()判断。那么这时候由于A还没有new对象呢，所以B也会new对象，那么这就不仅仅产生了一个对象实例。所以为了避免这种情况，我们需要对其进行加锁操作。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class LazySingleton &#123;</div><div class="line"></div><div class="line">	private LazySingleton() &#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static LazySingleton singleton = null;</div><div class="line"></div><div class="line">	public static LazySingleton getInstance() &#123;</div><div class="line">		synchronized (LazySingleton.class) &#123;</div><div class="line">			if (singleton == null) &#123;</div><div class="line">				singleton = new LazySingleton();</div><div class="line">			&#125;</div><div class="line">			return singleton;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的加锁方式确实能避免多线程并发造成的实例不唯一的情况，但是这么做就需要每次都得判断锁，增大了开销。所以我们更推荐采用下面的加锁方式，双重判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class LazySingleton &#123;</div><div class="line"></div><div class="line">	private LazySingleton() &#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static LazySingleton singleton = null;</div><div class="line"></div><div class="line">	public static LazySingleton getInstance() &#123;</div><div class="line">		if (singleton == null) &#123;</div><div class="line">			synchronized (LazySingleton.class) &#123;</div><div class="line">				if (singleton == null) &#123;</div><div class="line">					singleton = new LazySingleton();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return singleton;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="2-饿汉模式"><a href="#2-饿汉模式" class="headerlink" title="2.饿汉模式"></a>2.饿汉模式</h4><p>饿汉模式形象的表明了一个很饿的老汉将会自己动手去new实例对象，而不会等待用到的时候再去new，因为他饿啊。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public class Singleton1 &#123;</div><div class="line"></div><div class="line">	private Singleton1() &#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private static final Singleton1 singleton = new Singleton1();</div><div class="line"></div><div class="line">	public static Singleton1 getInstance() &#123;</div><div class="line"></div><div class="line">		return singleton;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>饿汉模式与懒汉模式的差异就在于是否先new对象。上面的代码中不加final也是可以的，因为static是在类加载过程中进行的，并且只加载一次。  </p>
+<h4 id="3-静态内部类实现单例模式"><a href="#3-静态内部类实现单例模式" class="headerlink" title="3.静态内部类实现单例模式"></a>3.静态内部类实现单例模式</h4><p>使用内部类的方式实现单例既可以做到延迟加载，又不必使用同步关键字，是一种比较完善的方式。</p>
+<pre><code>public class StaticSingleton{
+    private StaticSingleton(){
+
+    }
+    private static class SingletonHoder{
+        private static StaticSingleton instance=new StaticSingleton();
+    }
+    public static StaticSingleton getInstance(){
+        return SingletonHoder.instance;
+    }
+}
+</code></pre><p>当StaticSingleton被加载时,其内部类不会被初始化。实例的建立是在类被加载时完成，故对多线程友好。  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/19/工厂模式/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/19/工厂模式/" itemprop="url">
+                  工厂模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-19T21:14:08+08:00">
+                2017-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><blockquote>
+<p>工厂模式分为简单工厂模式（静态工厂），工厂方法模式，抽象工厂模式三大类。</p>
+<h5 id="1-简单工厂模式"><a href="#1-简单工厂模式" class="headerlink" title="1.简单工厂模式"></a>1.简单工厂模式</h5><p>简单工厂模式又叫静态工厂模式，是指将new一个对象的操作交由工厂的静态方法来产生。这样做的目的是可以在new一个对象的时候来进行一些操作判断。<br>假如我们有一个Car类，然后某人想去开车，我们要判断其是否有驾照等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class Car &#123;</div><div class="line">	public void drive()&#123;</div><div class="line">		System.out.println(&quot;开车出发喽。。。&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>正常情况下，一个人要是想开车，他就会直接new一个车。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class Main &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Car c=new Car();</div><div class="line">		c.drive();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样即使该人没有驾照我们也不能阻止他new。但是我们用一个简单工厂方法就可以进行控制。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class Factory &#123;</div><div class="line">	public static Car getCar()&#123;</div><div class="line">		//判断是否有驾照</div><div class="line">		return new Car();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样我们在main方法里就直接可以调用 Factory.getCar()来获取一个Car对象。</p>
+<p>如果我们想让他开摩托车，那我们要创建一个摩托类。并且在正常情况下要自己new一个摩托。我们交给工厂来做这些new的事情，我们不管他new的细节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class Moto &#123;</div><div class="line">	public static void driveMoto()&#123;</div><div class="line">		System.out.println(&quot;骑摩托出发了。。。。。&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样的话 我们就得让car和moto实现一个接口。比如vehile接口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">public interface Vehicle &#123;</div><div class="line">	void drive();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Car implements Vehicle&#123;</div><div class="line">	public void drive()&#123;</div><div class="line">		System.out.println(&quot;开车出发喽。。。&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Moto implements Vehicle &#123;</div><div class="line">	public void drive() &#123;</div><div class="line">		System.out.println(&quot;骑摩托出发了。。。。。&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Factory &#123;</div><div class="line">	public static &lt;T extends Vehicle&gt;  T getCar(Class&lt;T&gt; c)&#123;</div><div class="line">		//判断是否有驾照</div><div class="line">		Vehicle vehicle=null;</div><div class="line">		try &#123;</div><div class="line">			vehicle=(Vehicle) Class.forName(c.getName()).newInstance();</div><div class="line">		&#125; catch (InstantiationException | IllegalAccessException</div><div class="line">				| ClassNotFoundException e) &#123;</div><div class="line">			// TODO Auto-generated catch block</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		return (T) vehicle;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Main &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Vehicle c= Factory.getCar(Car.class);</div><div class="line">		c.drive();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="2-工厂方法模式"><a href="#2-工厂方法模式" class="headerlink" title="2.工厂方法模式"></a>2.工厂方法模式</h5><p>工厂方法模式和简单工厂模式很相似，只不过工厂方法模式需要继承一个抽象类，并且new出这个工厂。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class Plane implements Vehicle&#123;</div><div class="line">	public void drive()&#123;</div><div class="line">		System.out.println(&quot;开飞机喽。。。。。。&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public abstract class AbstractFactory &#123;</div><div class="line">	public abstract &lt;T&gt; Vehicle creat(Class&lt;T&gt; c);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Main &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		AbstractFactory factory=new Factory();</div><div class="line">		Vehicle c= factory.creat(Car.class);</div><div class="line">		c.drive();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><h6 id="多个工厂模式"><a href="#多个工厂模式" class="headerlink" title="多个工厂模式"></a>多个工厂模式</h6>上面的工厂方法模式，只有一个工厂来生产对象。但是如果初始化一个对象很费力，所有的产品类都放到一个工厂方法中进行初始化会使代码结构不清晰。举个例子，假如现在要生产一个飞机，那么生产汽车的工厂设备是不行的，所以我们就要用不同的工厂。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public class Plane implements Vehicle&#123;</div><div class="line">	public void drive()&#123;</div><div class="line">		System.out.println(&quot;开飞机喽。。。。。。&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public abstract class AbstractMultiFactory &#123;</div><div class="line">	public abstract Vehicle creat();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class PlaneFactory extends AbstractMultiFactory &#123;</div><div class="line">	@Override</div><div class="line">	public Vehicle creat() &#123;</div><div class="line">		return new Plane();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class CarFactory extends AbstractMultiFactory &#123;</div><div class="line">	@Override</div><div class="line">	public Vehicle creat() &#123;</div><div class="line">		return new Car();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Main &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Vehicle plane= new PlaneFactory().creat();</div><div class="line">		plane.drive();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="3-抽象工厂模式"><a href="#3-抽象工厂模式" class="headerlink" title="3.抽象工厂模式"></a>3.抽象工厂模式</h5><p>抽象工厂模式主要应用于一个产品族。比如你穿的衣服和鞋子都是NIke的,但是你突然有一天想换成Adidas的,你又不想一件一件换，想一下就换成功，就和换主题一样，主题里面的所有东西都变了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//nike鞋</div><div class="line">public class NikeShoes &#123;</div><div class="line">	public void getBrand()&#123;</div><div class="line">		System.out.println(&quot;Nike shoes...&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">//nike衬衫</div><div class="line">public class NikeShirt &#123;</div><div class="line">	public void getBrand()&#123;</div><div class="line">		System.out.println(&quot;Nike shirt...&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class NikeFactory &#123;</div><div class="line">	public NikeShirt creatNikeShirt()&#123;</div><div class="line">		return new NikeShirt();</div><div class="line">	&#125;</div><div class="line">	public NikeShoes creatNikeShoes()&#123;</div><div class="line">		return new NikeShoes();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的情况，如果我们要换成Adidas的，那我们就需要在工厂方法里进行更改。这样做并不好。所以我们采用如下的抽象工厂模式。我们让Nikeshire实现Shirt抽象类，让NikeShoes实现Shoes抽象类。并且建一个抽象工厂类，用来生产Shirt和Shoes。具体代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">public interface Shoes &#123;</div><div class="line">	public void getBrand();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public interface Shirt &#123;</div><div class="line">	public void getBrand();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class NikeShirt implements Shirt&#123;</div><div class="line">	public void getBrand()&#123;</div><div class="line">		System.out.println(&quot;Nike shirt...&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class NikeShoes implements Shoes&#123;</div><div class="line">	public void getBrand()&#123;</div><div class="line">		System.out.println(&quot;Nike shoes...&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public abstract class Factory &#123;</div><div class="line">	abstract Shirt creatShirt();</div><div class="line">	abstract Shoes creatShoes();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class NikeFactory extends Factory &#123;</div><div class="line">	@Override</div><div class="line">	Shirt creatShirt() &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		return new NikeShirt();</div><div class="line">	&#125;</div><div class="line">	@Override</div><div class="line">	Shoes creatShoes() &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		return new NikeShoes();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Main &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Factory factory=new NikeFactory();</div><div class="line">		factory.creatShirt();</div><div class="line">		factory.creatShoes();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当我们要改为Adidas时，我们只需将工厂换为Adidas即可，不需改动其他代码。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/19/java值传递/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1161,306 +1491,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2016/09/19/从头开始mysql/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/19/从头开始mysql/" itemprop="url">
-                  从头开始mysql
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-19T10:57:53+08:00">
-                2016-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line">alter table stu drop column sex;//删除列</div><div class="line"></div><div class="line">alter table stu add column sex varchar(20) not null after name;//指定位置添加列</div><div class="line"></div><div class="line">alter table stu change sex xingbie varchar(20);//改变列名</div><div class="line"></div><div class="line">mysql -uroot -p</div><div class="line"></div><div class="line">mysql -h -uroot -p //远程 </div><div class="line"></div><div class="line">show databases;</div><div class="line"></div><div class="line">use mysql;</div><div class="line"></div><div class="line">show tables;</div><div class="line"></div><div class="line">show columns from stu;//与下面这条语句相等</div><div class="line"></div><div class="line">describe stu;</div><div class="line"></div><div class="line">show create database mysql;//显示创建该库的语句（在该库已经存在的情况下）</div><div class="line"></div><div class="line">show create table stu;//显示创建该表时候的语句（在该表已经存在的情况下使用）</div><div class="line"></div><div class="line">表名区分大小写 列名不区分大小写  列里面的值也不区分大小写</div><div class="line"></div><div class="line">select distinct name from stu;//distinct应用于所有列,即所有列的内容完全一样才返回一条</div><div class="line"></div><div class="line"></div><div class="line">select distinct name,mail from stu order by name limit 0,1;//等价于下面</div><div class="line"></div><div class="line">select distinct name,mail from stu order by name limit 1 offset 0;</div><div class="line"></div><div class="line"> select distinct name,mail from stu where name like &apos;zhangsan&apos;;//like在没有通配符的情况下就是=</div><div class="line"> </div><div class="line"> select * from stu where name &lt;&gt; &apos;zhangsan&apos;;</div><div class="line"> </div><div class="line"> select * from stu where id between 2 and 5;</div><div class="line"> </div><div class="line"> is null </div><div class="line"> </div><div class="line"> select name from stu where id in (1,2);</div><div class="line"> </div><div class="line"> select * from stu where name like &apos;zhangsan%&apos;;// %匹配0个1个多个</div><div class="line"> </div><div class="line"> select * from stu where name like &apos;zhangsan_&apos;;// %匹配1个字符</div><div class="line"> </div><div class="line"> select * from stu where mail like &apos;%/_%&apos; escape &apos;/&apos;;  //转义采用 escape &apos;/&apos;</div><div class="line"> </div><div class="line"> select concat(name,&apos; &apos;,mail,&apos; &apos;,sex) as stuinfo from stu;//concat()函数 </div><div class="line"> </div><div class="line"> select now(); //2017-07-07 20:38:56</div><div class="line"></div><div class="line">date(now())  //2017-07-07</div><div class="line">Year(now())  //2017</div><div class="line">month(now()) //07</div><div class="line"></div><div class="line">count(*) //计算所有的行包括null行</div><div class="line">count(列) //计算非空行</div><div class="line"></div><div class="line">select max(name) from stu;//对于字符串的max返回排序后的最后一条</div><div class="line"></div><div class="line">select name from stu group by name having name=&apos;zhangsan&apos; ;</div><div class="line"></div><div class="line"> select id,stu.name,mail,course,score from stu join grades on stu.name=grades.name;</div><div class="line"></div><div class="line"> </div><div class="line"> select id,s.name,mail,course,score from stu as s, grades as g where s.name=g.name;</div><div class="line"> </div><div class="line"> </div><div class="line"> union 要有两个或两个以上的select语句  并且选择的列必须一致 并且自动去重 如果不想去重选择union all</div><div class="line"> </div><div class="line"> order by 只能用在最后一个select后面</div><div class="line"> </div><div class="line"> 全文本索引：fulltext   select note from textnote where match(note) against(&apos;hello&apos;);</div><div class="line"> </div><div class="line"> varchar类型不给长度会报错</div><div class="line"></div><div class="line">insert into table2(name) select name from table1;//将一张表的数据插入另一张表 mysql不支持select into </div><div class="line"></div><div class="line">update table set column =&apos;&apos; where column1=&apos;&apos;;//若更新过程中出现错误回退，若想忽略继续执行update ignore</div><div class="line"></div><div class="line">//存储过程</div><div class="line">delimiter //</div><div class="line">mysql&gt; create procedure pro()</div><div class="line">    -&gt; begin </div><div class="line">    -&gt; select * from stu;</div><div class="line">    -&gt; end //</div><div class="line">delimiter ;</div><div class="line"></div><div class="line">//调用</div><div class="line">call pro();</div><div class="line"></div><div class="line">//删除</div><div class="line">drop procedure pro ;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//带参数的存储过程</div><div class="line">delimiter //</div><div class="line">create procedure pro(</div><div class="line">out count int</div><div class="line">)</div><div class="line">begin</div><div class="line">select count(*) from stu into count;</div><div class="line">end //</div><div class="line">delimiter ;</div><div class="line">//调用</div><div class="line">call pro(@count);</div><div class="line">select @count;</div></pre></td></tr></table></figure>
-<p><img src="http://oc6shen8h.bkt.clouddn.com/delimiter.jpg" alt="image"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">delimiter //</div><div class="line">create procedure pro1(</div><div class="line">in idnum int,</div><div class="line">out idcount int</div><div class="line">)</div><div class="line">begin </div><div class="line">select count(*) from stu where id &lt;idnum into idcount;</div><div class="line">end //</div><div class="line">delimiter ;</div><div class="line"></div><div class="line">call pro1(5,@idcount);</div><div class="line"></div><div class="line">select @idcount;</div></pre></td></tr></table></figure></p>
-<p><img src="http://oc6shen8h.bkt.clouddn.com/delimiter2.jpg" alt="image"><br><code>create trigger newtrigger after insert on stu for each row select &#39;insert complete&#39;</code></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2016/09/19/括号匹配/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/19/括号匹配/" itemprop="url">
-                  括号匹配
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-19T10:57:53+08:00">
-                2016-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>左右括号的匹配问题，可以用栈来很好的解决。  </p>
-<ol>
-<li>遇到左括号，就入栈。</li>
-<li>遇到右括号，判断此时栈是否为空。 </li>
-</ol>
-<ul>
-<li>栈为空，说明右括号多。</li>
-<li>不为空，判断栈顶元素与该右括号是否对应，不对应，说明不匹配。如{(};若匹配则出栈。</li>
-</ul>
-<ol>
-<li>最后，遍历整个Str后,若栈为空，说明完全匹配，若栈不空，说明左括号多。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">import java.util.Stack;</div><div class="line">public class BracketMatch&#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		String s=&quot;&#123;[(2+4)+(3-5)/9]*4+1&#125;*&#123;[(2-4)+(3-5)*9]*(4+1)&#125; &quot;;</div><div class="line">		System.out.println(match(s));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static boolean match(String s)&#123;</div><div class="line">		Stack stack=new Stack();</div><div class="line">		char c[]=s.toCharArray();</div><div class="line">		for (int i=0;i&lt;c.length ;i++ ) &#123;</div><div class="line">			if(isLeftBracket(c[i]))&#123;</div><div class="line">				stack.push(c[i]);</div><div class="line">			&#125;else if(isRightBracket(c[i]))&#123;</div><div class="line">				//如果栈为空，说明右括号多</div><div class="line">				if(stack.isEmpty())&#123;</div><div class="line">					return false;</div><div class="line">				&#125;else &#123;</div><div class="line">					//判断栈顶的元素是否和右括号是匹配的</div><div class="line">					if(!stack.peek().equals(resverse(c[i])))&#123;</div><div class="line">						return false;</div><div class="line">					&#125;else&#123;</div><div class="line">						//若匹配则将对应的左括号出栈</div><div class="line">						stack.pop();</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		//如果所有的字符都匹配结束，栈也为空，那么就表示匹配，否则就是左括号多</div><div class="line">		if (stack.isEmpty()) &#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	//判断是否为左括号</div><div class="line">	public static boolean isLeftBracket(char c)&#123;</div><div class="line">		if(c==&apos;&#123;&apos;||c==&apos;[&apos;||c==&apos;(&apos;)&#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	//判断是否为右括号</div><div class="line">	public static boolean isRightBracket(char c)&#123;</div><div class="line">		if(c==&apos;&#125;&apos;||c==&apos;]&apos;||c==&apos;)&apos;)&#123;</div><div class="line">			return true;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	//找出与右括号对应的左括号</div><div class="line">	public static char resverse(char c)&#123;</div><div class="line">		char res=&apos; &apos;;</div><div class="line">		if(c==&apos;&#125;&apos;)&#123;</div><div class="line">			res= &apos;&#123;&apos;;</div><div class="line">		&#125;else if(c==&apos;]&apos;)&#123;</div><div class="line">			res= &apos;[&apos;;</div><div class="line">		&#125;else if(c==&apos;)&apos;)&#123;</div><div class="line">			res= &apos;(&apos;;</div><div class="line">		&#125;</div><div class="line">		return res;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1510,7 +1540,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
