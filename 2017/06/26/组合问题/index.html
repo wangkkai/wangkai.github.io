@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。123456789101112131415161718192021222324public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;">
+<meta name="description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。12345678910111213141516171819202122232425public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;g">
 <meta name="keywords" content="组合，排列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组合、排列问题">
 <meta property="og:url" content="http://wangkkai.github.io/2017/06/26/组合问题/index.html">
 <meta property="og:site_name" content="wangkai&#39;s blog">
-<meta property="og:description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。123456789101112131415161718192021222324public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;">
-<meta property="og:updated_time" content="2017-06-27T00:30:12.647Z">
+<meta property="og:description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。12345678910111213141516171819202122232425public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;g">
+<meta property="og:updated_time" content="2017-08-04T13:37:06.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组合、排列问题">
-<meta name="twitter:description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。123456789101112131415161718192021222324public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;">
+<meta name="twitter:description" content="给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。12345678910111213141516171819202122232425public class Main &amp;#123;    static ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;g">
 
 
 
@@ -378,7 +378,7 @@
 
       
         <blockquote>
-<p>给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public class Main &#123;</div><div class="line">    static ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String s = &quot;ABC&quot;;</div><div class="line">        combine(s, 0, 3, 2, new String());</div><div class="line"></div><div class="line">        for (String tmp :</div><div class="line">                list) &#123;</div><div class="line">            System.out.println(tmp);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void combine(String s, int low, int high, int num, String res) &#123;</div><div class="line">        if (num == 0) &#123;    //个数m</div><div class="line">            list.add(res);</div><div class="line">        &#125; else &#123;</div><div class="line">            for (int i = low; i &lt; high; i++) &#123;</div><div class="line">                combine(s, i + 1, high, num - 1, res + s.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class Main &#123;</div><div class="line">    static ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String s = &quot;ABC&quot;;</div><div class="line">        combine(s, 0, 3, 2, new String());</div><div class="line"></div><div class="line">        for (String tmp :</div><div class="line">                list) &#123;</div><div class="line">            System.out.println(tmp);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void combine(String s, int low, int high, int num, String res) &#123;</div><div class="line">        if (num == 0) &#123;    //个数m</div><div class="line">            list.add(res);</div><div class="line">        &#125; else &#123;</div><div class="line">            for (int i = low; i &lt; high; i++) &#123;</div><div class="line">                //注意这里的i+1不是low+1 low+1是错误的因为最外层的low是固定不变的</div><div class="line">                combine(s, i + 1, high, num - 1, res + s.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>排列问题.比如有ABC,那么全排列为ABC,ACB,BAC,BCA,CAB,CBA六种。思路仍然是递归，固定一个字符，后面的继续，知道到达字符串为末尾。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public static void perm(char[] c, int st, int len) &#123;</div><div class="line">        if (st == len - 1) &#123;</div><div class="line">            for (int i = 0; i &lt; len; i++) &#123;</div><div class="line">                System.out.print(c[i]);</div><div class="line">            &#125;</div><div class="line">            System.out.println();</div><div class="line">        &#125; else &#123;</div><div class="line">            for (int i = st; i &lt; len; i++) &#123;</div><div class="line">                swap(c, i, st);</div><div class="line">                perm(c,st+1,len);</div><div class="line">                swap(c, i, st);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void swap(char[] c, int i, int j) &#123;</div><div class="line">        char temp = c[i];</div><div class="line">        c[i] = c[j];</div><div class="line">        c[j] = temp;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
 </blockquote>
 
@@ -533,7 +533,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -551,7 +551,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
