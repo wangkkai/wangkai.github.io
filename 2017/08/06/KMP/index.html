@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java," />
+  <meta name="keywords" content="KMP," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="我们知道Java中的outer class只能被public default修饰。如果一个类被default修饰，那么该类的作用域就被限定到包。并且我们也知道一个public class的类名必须和文件名相同，那么default修饰的class呢？答案是无所谓。我们新建一个PublicTest.java的文件。12345class Test&amp;#123;     public static void">
-<meta name="keywords" content="java">
+<meta name="description" content="给定两个字符串a和b。要求返回b在a中出现的位置。 1.暴力方法就是从头开始遍历a,如果相同就向后移动。否则，从下个位置开始。时间复杂度O(mn)12345678910111213141516171819public static int bfPattern(String a, String b) &amp;#123;        if (a==null||b==null||a.length()&amp;gt">
+<meta name="keywords" content="KMP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="class的访问修饰符">
-<meta property="og:url" content="http://wangkkai.github.io/2017/04/24/class的访问修饰符/index.html">
+<meta property="og:title" content="KMP">
+<meta property="og:url" content="http://wangkkai.github.io/2017/08/06/KMP/index.html">
 <meta property="og:site_name" content="wangkai&#39;s blog">
-<meta property="og:description" content="我们知道Java中的outer class只能被public default修饰。如果一个类被default修饰，那么该类的作用域就被限定到包。并且我们也知道一个public class的类名必须和文件名相同，那么default修饰的class呢？答案是无所谓。我们新建一个PublicTest.java的文件。12345class Test&amp;#123;     public static void">
-<meta property="og:updated_time" content="2017-04-24T06:07:30.612Z">
+<meta property="og:description" content="给定两个字符串a和b。要求返回b在a中出现的位置。 1.暴力方法就是从头开始遍历a,如果相同就向后移动。否则，从下个位置开始。时间复杂度O(mn)12345678910111213141516171819public static int bfPattern(String a, String b) &amp;#123;        if (a==null||b==null||a.length()&amp;gt">
+<meta property="og:updated_time" content="2017-08-06T11:55:24.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="class的访问修饰符">
-<meta name="twitter:description" content="我们知道Java中的outer class只能被public default修饰。如果一个类被default修饰，那么该类的作用域就被限定到包。并且我们也知道一个public class的类名必须和文件名相同，那么default修饰的class呢？答案是无所谓。我们新建一个PublicTest.java的文件。12345class Test&amp;#123;     public static void">
+<meta name="twitter:title" content="KMP">
+<meta name="twitter:description" content="给定两个字符串a和b。要求返回b在a中出现的位置。 1.暴力方法就是从头开始遍历a,如果相同就向后移动。否则，从下个位置开始。时间复杂度O(mn)12345678910111213141516171819public static int bfPattern(String a, String b) &amp;#123;        if (a==null||b==null||a.length()&amp;gt">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://wangkkai.github.io/2017/04/24/class的访问修饰符/"/>
+  <link rel="canonical" href="http://wangkkai.github.io/2017/08/06/KMP/"/>
 
 
 
 
 
-  <title> class的访问修饰符 | wangkai's blog </title>
+  <title> KMP | wangkai's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/04/24/class的访问修饰符/">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/08/06/KMP/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wangkai">
@@ -294,7 +294,7 @@
             
             
               
-                class的访问修饰符
+                KMP
               
             
           </h1>
@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-24T13:58:30+08:00">
-                2017-04-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T19:46:20+08:00">
+                2017-08-06
               </time>
             
 
@@ -332,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -350,7 +350,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/04/24/class的访问修饰符/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/08/06/KMP/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -377,8 +377,11 @@
       
 
       
-        <p>我们知道Java中的outer class只能被public default修饰。如果一个类被default修饰，那么该类的作用域就被限定到包。并且我们也知道一个public class的类名必须和文件名相同，那么default修饰的class呢？答案是无所谓。<br>我们新建一个PublicTest.java的文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Test&#123;</div><div class="line">     public static void main(String[] args)&#123;</div><div class="line">        System.out.println(&quot;hello&quot;);</div><div class="line">     &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
-<p>然后我们javac PublicTest.java编译之后，就只会有Test.class。接着java Test运行后结果当然就是正确的。</p>
+        <blockquote>
+<p>给定两个字符串a和b。要求返回b在a中出现的位置。</p>
+<h4 id="1-暴力方法"><a href="#1-暴力方法" class="headerlink" title="1.暴力方法"></a>1.暴力方法</h4><p>就是从头开始遍历a,如果相同就向后移动。否则，从下个位置开始。时间复杂度O(mn)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public static int bfPattern(String a, String b) &#123;</div><div class="line">        if (a==null||b==null||a.length()&gt;1||b.length()&lt;1||a.length()&lt;b.length())&#123;</div><div class="line">            return -1;</div><div class="line">        &#125;</div><div class="line">        int i = 0;</div><div class="line">        int j = 0;</div><div class="line">        while (i &lt; a.length() &amp;&amp; j &lt; b.length()) &#123;</div><div class="line">            if (a.charAt(i) == b.charAt(j)) &#123;</div><div class="line">                i++;</div><div class="line">                j++;</div><div class="line">            &#125; else &#123;</div><div class="line">                i = i - j + 1;</div><div class="line">                j = 0;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if (j == b.length()) &#123;</div><div class="line">            return i - j;</div><div class="line">        &#125; else return -1;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="2-KMP算法"><a href="#2-KMP算法" class="headerlink" title="2.KMP算法"></a>2.KMP算法</h4><p>该算法的时间复杂度为O(m).在该算法中，a的位置不会后退，只会前进。我们首先对于B计算出它的next[]数组，表示前缀后缀最大的长度。具体的可以参考这篇博文。<a href="http://www.cnblogs.com/c-cloud/p/3224788.html" target="_blank" rel="external">【经典算法】——KMP，深入讲解next数组的求解</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">public static int KMP(String a, String b) &#123;</div><div class="line">        int i = 0;</div><div class="line">        int j = 0;</div><div class="line">        int[] next = calNext(b);</div><div class="line">        while (i &lt; a.length() &amp;&amp; j &lt; b.length()) &#123;</div><div class="line">            if (a.charAt(i) == b.charAt(j)) &#123;</div><div class="line">                i++;</div><div class="line">                j++;</div><div class="line">            &#125; else if (next[j] == -1) &#123;</div><div class="line">                i++;</div><div class="line">            &#125; else j = next[j];</div><div class="line">        &#125;</div><div class="line">        return j == b.length() ? i - j : -1;</div><div class="line">    &#125;</div><div class="line">    //求解next数组</div><div class="line">    public static int[] calNext(String b) &#123;</div><div class="line">        int[] next = new int[b.length()];</div><div class="line">        next[0] = -1;</div><div class="line">        next[1] = 0;</div><div class="line">        int pos = 2;</div><div class="line">        int cnt = 0;</div><div class="line">        while (pos &lt; next.length) &#123;</div><div class="line">            if (b.charAt(pos - 1) == b.charAt(cnt)) &#123;</div><div class="line">                cnt++;</div><div class="line">                next[pos] = cnt;</div><div class="line">                pos++;</div><div class="line">            &#125; else if (cnt &gt; 0) &#123;</div><div class="line">                cnt = next[cnt];</div><div class="line">            &#125; else next[pos++] = 0;</div><div class="line">        &#125;</div><div class="line">        return next;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -418,7 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
+            <a href="/tags/KMP/" rel="tag"># KMP</a>
           
         </div>
       
@@ -431,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/19/ubuntu下shell提示unexpected operator/" rel="next" title="ubuntu下shell提示unexpected operator">
-                <i class="fa fa-chevron-left"></i> ubuntu下shell提示unexpected operator
+              <a href="/2017/08/06/大数运算/" rel="next" title="大数运算">
+                <i class="fa fa-chevron-left"></i> 大数运算
               </a>
             
           </div>
@@ -440,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/25/数字证书原理公钥私钥/" rel="prev" title="数字证书的原理及公钥私钥">
-                数字证书的原理及公钥私钥 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -594,6 +602,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-暴力方法"><span class="nav-number">1.</span> <span class="nav-text">1.暴力方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-KMP算法"><span class="nav-number">2.</span> <span class="nav-text">2.KMP算法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
