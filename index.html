@@ -267,6 +267,153 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/08/15/蓄水池算法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangkai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wangkai's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/15/蓄水池算法/" itemprop="url">
+                  蓄水池算法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T19:22:55+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>有一个机器按自然数序列的方式吐出球（1号球，2号球，3号球，……），你有一个袋子，袋子最多只能装下K个球，并且除袋子以外，你没有更多的空间。设计一种选择方式，使得当机器吐出第N号球的时候（N&gt;K），你袋子中的球数是K个，同时可以保证从1号球到N号球中的每一个，被选进袋子的概率都是K/N。举一个更具体的例子，有一个只能装下10个球的袋子，当吐出100个球时，袋子里有10个球，并且1~100号中的每一个球被选中的概率都是10/100。然后继续吐球，当吐出1000个球时，袋子里有10个球，并且1~1000号中的每一个球被选中的概率都是10/1000。继续吐球，当吐出i个球时，袋子里有10个球，并且1~i号中的每一个球被选中的概率都是10/i，即吐球的同时，已经吐出的球被选中的概率也动态地变化。  </p>
+</blockquote>
+<p>如果对上面的题目感觉有点困惑，那就举个现实中的例子。比如公司举行抽奖活动，奖品有100个。使得每个人抽中的概率都是相等的。比如有N个人，那么每个人的概率应该是100/N. 但是为了节省空间，我们不一定非要等N个人到齐了才进行抽奖。我们的目的是任何时刻的抽奖的概率都是相等的。<br>好，继续原题。<br>思路如下：<br>假设袋子容量是10。那么对于前10个球，我们直接放入袋子。当第11个求你到来的时候，我们怎么处理呢？<br>我们将第11号球放入袋子的概率是10/11。为什么这么做是对的呢？<br>首先，对于第11球来说，它进入的概率是10/11。这个就不用证明了，一定是对的。那么对于袋子里的球怎么处理呢？<br>我们以1/10的概率从袋子里取出一个球扔掉。那么该球的概率满足10/11吗？<br>当然是满足的。因为它要是被扔掉，那么前提是第11号球进来，概率是10/11再乘以它被扔掉的概率1/10,所以总的被扔的概率是1/11.那么留下来的概率是10/11.  </p>
+<p>至于代码的实现，就比较容易了。<br>10/11这种概率的问题可以转化为Rand()函数产生0~11.如果小于11就放进去这种操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">public class ReservoirSampling &#123;</div><div class="line"></div><div class="line">    // 一个简单的随机函数，决定一个事情做还是不做</div><div class="line">    public static int rand(int max) &#123;</div><div class="line">        // 等概率返回1~max中的一个   -&gt; 0~max-1 +1 -&gt; 1~max</div><div class="line">        return (int) (Math.random() * max) + 1;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static int[] getKNumsRand(int k, int max) &#123;</div><div class="line">        if (max &lt; 1 || k &lt; 1) &#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">        int[] res = new int[Math.min(k, max)];</div><div class="line">        for (int i = 0; i != res.length; i++) &#123;</div><div class="line">            res[i] = i + 1; // 前k个数直接进袋子</div><div class="line">        &#125;</div><div class="line">        for (int i = k + 1; i &lt; max + 1; i++) &#123;</div><div class="line">            if (rand(i) &lt;= k) &#123; // 决定i进不进袋子</div><div class="line">                res[rand(k) - 1] = i; // i随机替掉袋子中的一个</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void printArray(int[] arr) &#123;</div><div class="line">        for (int i = 0; i != arr.length; i++) &#123;</div><div class="line">            System.out.print(arr[i] + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line">        System.out.println();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int[] res = getKNumsRand(10, 10000);</div><div class="line">        printArray(res);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/08/15/折纸问题/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1307,152 +1454,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/06/26/组合问题/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="wangkai">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="wangkai's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="wangkai's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/26/组合问题/" itemprop="url">
-                  组合、排列问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T21:37:15+08:00">
-                2017-06-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>给定一个长度为n的数组，要求从里面选出m个数的全排列。这个问题可以用递归来解决。首先选择一个数，然后从剩下的n-1个里面选择m-1个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class Main &#123;</div><div class="line">    static ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String s = &quot;ABC&quot;;</div><div class="line">        combine(s, 0, 3, 2, new String());</div><div class="line"></div><div class="line">        for (String tmp :</div><div class="line">                list) &#123;</div><div class="line">            System.out.println(tmp);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void combine(String s, int low, int high, int num, String res) &#123;</div><div class="line">        if (num == 0) &#123;    //个数m</div><div class="line">            list.add(res);</div><div class="line">        &#125; else &#123;</div><div class="line">            for (int i = low; i &lt; high; i++) &#123;</div><div class="line">                //注意这里的i+1不是low+1 low+1是错误的因为最外层的low是固定不变的</div><div class="line">                combine(s, i + 1, high, num - 1, res + s.charAt(i));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>排列问题.比如有ABC,那么全排列为ABC,ACB,BAC,BCA,CAB,CBA六种。思路仍然是递归，固定一个字符，后面的继续，知道到达字符串为末尾。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public static void perm(char[] c, int st, int len) &#123;</div><div class="line">        if (st == len - 1) &#123;</div><div class="line">            for (int i = 0; i &lt; len; i++) &#123;</div><div class="line">                System.out.print(c[i]);</div><div class="line">            &#125;</div><div class="line">            System.out.println();</div><div class="line">        &#125; else &#123;</div><div class="line">            for (int i = st; i &lt; len; i++) &#123;</div><div class="line">                swap(c, i, st);</div><div class="line">                perm(c,st+1,len);</div><div class="line">                swap(c, i, st);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void swap(char[] c, int i, int j) &#123;</div><div class="line">        char temp = c[i];</div><div class="line">        c[i] = c[j];</div><div class="line">        c[j] = temp;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1502,7 +1503,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1520,7 +1521,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

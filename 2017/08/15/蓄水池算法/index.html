@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="动态规划," />
+  <meta name="keywords" content="概率," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="比如给定一个数组arr={1,3,6,4,5};那么最长递增子序列是[1,3,4,5]思路：申请一个dp[]数组，长度等于arr,初始化为1。dp[i]表示i位置前面的最长递增子序列的长度。dp[0]=1 因为只有1这一个整数。dp[1]=2 因为有1，3具体的思路是对于任意一个i，使得j从0遍历到i-1,如果arr[j]&amp;lt; arr[i],dp[i]=max(dp[i],dp[j]+1);1">
-<meta name="keywords" content="动态规划">
+<meta name="description" content="有一个机器按自然数序列的方式吐出球（1号球，2号球，3号球，……），你有一个袋子，袋子最多只能装下K个球，并且除袋子以外，你没有更多的空间。设计一种选择方式，使得当机器吐出第N号球的时候（N&amp;gt;K），你袋子中的球数是K个，同时可以保证从1号球到N号球中的每一个，被选进袋子的概率都是K/N。举一个更具体的例子，有一个只能装下10个球的袋子，当吐出100个球时，袋子里有10个球，并且1~100号">
+<meta name="keywords" content="概率">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最长递增子序列">
-<meta property="og:url" content="http://wangkkai.github.io/2017/05/26/最长递增子序列/index.html">
+<meta property="og:title" content="蓄水池算法">
+<meta property="og:url" content="http://wangkkai.github.io/2017/08/15/蓄水池算法/index.html">
 <meta property="og:site_name" content="wangkai&#39;s blog">
-<meta property="og:description" content="比如给定一个数组arr={1,3,6,4,5};那么最长递增子序列是[1,3,4,5]思路：申请一个dp[]数组，长度等于arr,初始化为1。dp[i]表示i位置前面的最长递增子序列的长度。dp[0]=1 因为只有1这一个整数。dp[1]=2 因为有1，3具体的思路是对于任意一个i，使得j从0遍历到i-1,如果arr[j]&amp;lt; arr[i],dp[i]=max(dp[i],dp[j]+1);1">
-<meta property="og:updated_time" content="2017-05-26T08:20:34.874Z">
+<meta property="og:description" content="有一个机器按自然数序列的方式吐出球（1号球，2号球，3号球，……），你有一个袋子，袋子最多只能装下K个球，并且除袋子以外，你没有更多的空间。设计一种选择方式，使得当机器吐出第N号球的时候（N&amp;gt;K），你袋子中的球数是K个，同时可以保证从1号球到N号球中的每一个，被选进袋子的概率都是K/N。举一个更具体的例子，有一个只能装下10个球的袋子，当吐出100个球时，袋子里有10个球，并且1~100号">
+<meta property="og:updated_time" content="2017-08-15T11:39:06.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最长递增子序列">
-<meta name="twitter:description" content="比如给定一个数组arr={1,3,6,4,5};那么最长递增子序列是[1,3,4,5]思路：申请一个dp[]数组，长度等于arr,初始化为1。dp[i]表示i位置前面的最长递增子序列的长度。dp[0]=1 因为只有1这一个整数。dp[1]=2 因为有1，3具体的思路是对于任意一个i，使得j从0遍历到i-1,如果arr[j]&amp;lt; arr[i],dp[i]=max(dp[i],dp[j]+1);1">
+<meta name="twitter:title" content="蓄水池算法">
+<meta name="twitter:description" content="有一个机器按自然数序列的方式吐出球（1号球，2号球，3号球，……），你有一个袋子，袋子最多只能装下K个球，并且除袋子以外，你没有更多的空间。设计一种选择方式，使得当机器吐出第N号球的时候（N&amp;gt;K），你袋子中的球数是K个，同时可以保证从1号球到N号球中的每一个，被选进袋子的概率都是K/N。举一个更具体的例子，有一个只能装下10个球的袋子，当吐出100个球时，袋子里有10个球，并且1~100号">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://wangkkai.github.io/2017/05/26/最长递增子序列/"/>
+  <link rel="canonical" href="http://wangkkai.github.io/2017/08/15/蓄水池算法/"/>
 
 
 
 
 
-  <title> 最长递增子序列 | wangkai's blog </title>
+  <title> 蓄水池算法 | wangkai's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/05/26/最长递增子序列/">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/08/15/蓄水池算法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wangkai">
@@ -294,7 +294,7 @@
             
             
               
-                最长递增子序列
+                蓄水池算法
               
             
           </h1>
@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T16:09:25+08:00">
-                2017-05-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T19:22:55+08:00">
+                2017-08-15
               </time>
             
 
@@ -350,7 +350,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/05/26/最长递增子序列/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/08/15/蓄水池算法/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -377,9 +377,11 @@
       
 
       
-        <p>比如给定一个数组arr={1,3,6,4,5};<br>那么最长递增子序列是[1,3,4,5]<br>思路：<br>申请一个dp[]数组，长度等于arr,初始化为1。dp[i]表示i位置前面的最长递增子序列的长度。<br>dp[0]=1 因为只有1这一个整数。<br>dp[1]=2 因为有1，3<br>具体的思路是对于任意一个i，使得j从0遍历到i-1,如果arr[j]&lt; arr[i],dp[i]=max(dp[i],dp[j]+1);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public static int lis(int arr[]) &#123;</div><div class="line">        int res = 1;</div><div class="line">        int[] dp = new int[arr.length];</div><div class="line">        for (int i = 0; i &lt; arr.length; i++) &#123;</div><div class="line">            dp[i] = 1;</div><div class="line">            for (int j = 0; j &lt; i; j++) &#123;</div><div class="line">                if (arr[i] &gt; arr[j]) &#123;</div><div class="line">                    dp[i] = Math.max(dp[i], dp[j] + 1);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        for (int i = 0; i &lt; dp.length; i++) &#123;</div><div class="line">            if (dp[i] &gt; res) &#123;</div><div class="line">                res = dp[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return res;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>时间复杂度为O(N*N) .因为i从0到arr.length,j从0到i.</p>
-<p>但是还有一种算法的时间复杂度为O(N*logN)，后续再讲。</p>
+        <blockquote>
+<p>有一个机器按自然数序列的方式吐出球（1号球，2号球，3号球，……），你有一个袋子，袋子最多只能装下K个球，并且除袋子以外，你没有更多的空间。设计一种选择方式，使得当机器吐出第N号球的时候（N&gt;K），你袋子中的球数是K个，同时可以保证从1号球到N号球中的每一个，被选进袋子的概率都是K/N。举一个更具体的例子，有一个只能装下10个球的袋子，当吐出100个球时，袋子里有10个球，并且1~100号中的每一个球被选中的概率都是10/100。然后继续吐球，当吐出1000个球时，袋子里有10个球，并且1~1000号中的每一个球被选中的概率都是10/1000。继续吐球，当吐出i个球时，袋子里有10个球，并且1~i号中的每一个球被选中的概率都是10/i，即吐球的同时，已经吐出的球被选中的概率也动态地变化。  </p>
+</blockquote>
+<p>如果对上面的题目感觉有点困惑，那就举个现实中的例子。比如公司举行抽奖活动，奖品有100个。使得每个人抽中的概率都是相等的。比如有N个人，那么每个人的概率应该是100/N. 但是为了节省空间，我们不一定非要等N个人到齐了才进行抽奖。我们的目的是任何时刻的抽奖的概率都是相等的。<br>好，继续原题。<br>思路如下：<br>假设袋子容量是10。那么对于前10个球，我们直接放入袋子。当第11个求你到来的时候，我们怎么处理呢？<br>我们将第11号球放入袋子的概率是10/11。为什么这么做是对的呢？<br>首先，对于第11球来说，它进入的概率是10/11。这个就不用证明了，一定是对的。那么对于袋子里的球怎么处理呢？<br>我们以1/10的概率从袋子里取出一个球扔掉。那么该球的概率满足10/11吗？<br>当然是满足的。因为它要是被扔掉，那么前提是第11号球进来，概率是10/11再乘以它被扔掉的概率1/10,所以总的被扔的概率是1/11.那么留下来的概率是10/11.  </p>
+<p>至于代码的实现，就比较容易了。<br>10/11这种概率的问题可以转化为Rand()函数产生0~11.如果小于11就放进去这种操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">public class ReservoirSampling &#123;</div><div class="line"></div><div class="line">    // 一个简单的随机函数，决定一个事情做还是不做</div><div class="line">    public static int rand(int max) &#123;</div><div class="line">        // 等概率返回1~max中的一个   -&gt; 0~max-1 +1 -&gt; 1~max</div><div class="line">        return (int) (Math.random() * max) + 1;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static int[] getKNumsRand(int k, int max) &#123;</div><div class="line">        if (max &lt; 1 || k &lt; 1) &#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">        int[] res = new int[Math.min(k, max)];</div><div class="line">        for (int i = 0; i != res.length; i++) &#123;</div><div class="line">            res[i] = i + 1; // 前k个数直接进袋子</div><div class="line">        &#125;</div><div class="line">        for (int i = k + 1; i &lt; max + 1; i++) &#123;</div><div class="line">            if (rand(i) &lt;= k) &#123; // 决定i进不进袋子</div><div class="line">                res[rand(k) - 1] = i; // i随机替掉袋子中的一个</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void printArray(int[] arr) &#123;</div><div class="line">        for (int i = 0; i != arr.length; i++) &#123;</div><div class="line">            System.out.print(arr[i] + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line">        System.out.println();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int[] res = getKNumsRand(10, 10000);</div><div class="line">        printArray(res);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -419,7 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+            <a href="/tags/概率/" rel="tag"># 概率</a>
           
         </div>
       
@@ -432,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/21/N！中末尾0的个数/" rel="next" title="N!中末尾0的个数">
-                <i class="fa fa-chevron-left"></i> N!中末尾0的个数
+              <a href="/2017/08/15/折纸问题/" rel="next" title="折纸问题">
+                <i class="fa fa-chevron-left"></i> 折纸问题
               </a>
             
           </div>
@@ -441,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/28/子数组最大和/" rel="prev" title="子数组最大和">
-                子数组最大和 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
