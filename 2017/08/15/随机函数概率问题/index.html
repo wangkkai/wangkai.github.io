@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="递归,链表," />
+  <meta name="keywords" content="随机函数," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。  思路：就是判断头节点是哪个，然后递归调用除了头结点之外的节点，在选出一个最小的节点。 12345678910111213141516171819202122232425262728class ListNode &amp;#123;    int val;    ListNode next = null;">
-<meta name="keywords" content="递归,链表">
+<meta name="description" content="今天我们解决随机函数等概率产生某段数字的问题。这一类问题都可以用通用的模板方法解决。也就是二进制的思想。我们看题。  1.给定一个等概率随机产生1~5的随机函数rand1To5如下：123public int rand1To5() &amp;#123;         return (int) (Math.random() * 5) + 1;   &amp;#125; 除此之外，不能使用任何额外的随机机制，请用">
+<meta name="keywords" content="随机函数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="链表合并">
-<meta property="og:url" content="http://wangkkai.github.io/2017/02/26/链表合并/index.html">
+<meta property="og:title" content="随机函数概率问题">
+<meta property="og:url" content="http://wangkkai.github.io/2017/08/15/随机函数概率问题/index.html">
 <meta property="og:site_name" content="wangkai&#39;s blog">
-<meta property="og:description" content="输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。  思路：就是判断头节点是哪个，然后递归调用除了头结点之外的节点，在选出一个最小的节点。 12345678910111213141516171819202122232425262728class ListNode &amp;#123;    int val;    ListNode next = null;">
-<meta property="og:updated_time" content="2017-02-26T12:57:36.218Z">
+<meta property="og:description" content="今天我们解决随机函数等概率产生某段数字的问题。这一类问题都可以用通用的模板方法解决。也就是二进制的思想。我们看题。  1.给定一个等概率随机产生1~5的随机函数rand1To5如下：123public int rand1To5() &amp;#123;         return (int) (Math.random() * 5) + 1;   &amp;#125; 除此之外，不能使用任何额外的随机机制，请用">
+<meta property="og:updated_time" content="2017-08-15T03:08:25.546Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="链表合并">
-<meta name="twitter:description" content="输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。  思路：就是判断头节点是哪个，然后递归调用除了头结点之外的节点，在选出一个最小的节点。 12345678910111213141516171819202122232425262728class ListNode &amp;#123;    int val;    ListNode next = null;">
+<meta name="twitter:title" content="随机函数概率问题">
+<meta name="twitter:description" content="今天我们解决随机函数等概率产生某段数字的问题。这一类问题都可以用通用的模板方法解决。也就是二进制的思想。我们看题。  1.给定一个等概率随机产生1~5的随机函数rand1To5如下：123public int rand1To5() &amp;#123;         return (int) (Math.random() * 5) + 1;   &amp;#125; 除此之外，不能使用任何额外的随机机制，请用">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://wangkkai.github.io/2017/02/26/链表合并/"/>
+  <link rel="canonical" href="http://wangkkai.github.io/2017/08/15/随机函数概率问题/"/>
 
 
 
 
 
-  <title> 链表合并 | wangkai's blog </title>
+  <title> 随机函数概率问题 | wangkai's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/02/26/链表合并/">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/08/15/随机函数概率问题/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wangkai">
@@ -294,7 +294,7 @@
             
             
               
-                链表合并
+                随机函数概率问题
               
             
           </h1>
@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-26T20:53:23+08:00">
-                2017-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T10:02:35+08:00">
+                2017-08-15
               </time>
             
 
@@ -350,7 +350,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/02/26/链表合并/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/08/15/随机函数概率问题/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -378,10 +378,17 @@
 
       
         <blockquote>
-<p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p>
+<p>今天我们解决随机函数等概率产生某段数字的问题。这一类问题都可以用通用的模板方法解决。也就是二进制的思想。我们看题。</p>
 </blockquote>
-<p>思路：就是判断头节点是哪个，然后递归调用除了头结点之外的节点，在选出一个最小的节点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">class ListNode &#123;</div><div class="line">    int val;</div><div class="line">    ListNode next = null;</div><div class="line"></div><div class="line">    ListNode(int val) &#123;</div><div class="line">        this.val = val;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Solution &#123;</div><div class="line">    public ListNode Merge(ListNode list1,ListNode list2) &#123;</div><div class="line">        if(list1==null)&#123;</div><div class="line">            return list2;</div><div class="line">        &#125;</div><div class="line">        if(list2==null)&#123;</div><div class="line">            return list1;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ListNode Node=null;</div><div class="line">        if(list1.val&lt;=list2.val)&#123;</div><div class="line">            Node=list1;</div><div class="line">           Node.next= Merge(list1.next,list2);</div><div class="line">        &#125;else if(list1.val&gt;list2.val)&#123;</div><div class="line">            Node =list2;</div><div class="line">             Node.next=Merge(list1,list2.next);</div><div class="line">        &#125;</div><div class="line">        return Node;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1.给定一个等概率随机产生1~5的随机函数rand1To5如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public int rand1To5() &#123;      </div><div class="line">   return (int) (Math.random() * 5) + 1;   </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>除此之外，不能使用任何额外的随机机制，请用rand1To5实现等概率随机产生1~7的随机函数rand1To7。<br>思路：<br>通常大家可能会这么做。首先用rand1To5()-1产生0~4。然后*5产生0,5,10，15,20.然后再加上0~4，会产生0~24之间的数。0~24除以4产生0~6之间的数。然后再加上1就是1~7.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public static int random1To7() &#123;</div><div class="line">     return (int) ((random1To5() - 1) * 5 + random1To5() - 1) / 4 + 1;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>这种方法当然是可行的，但是若我们改成其他范围的，我们就需要构造不同的数来完成。下面我们介绍一种比较通用的方法。进制的方法。<br>①. rand1To5()对于该函数我们想办法使其只返回0,1，可以看成是二进制的0,1。<br>这个要求很容易办到，就是如果产生的是1,2我们就返回0，若产生的是4,5我们就返回1.若产生的是3就重新做一次。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//等概率产生0和1</div><div class="line">   public static int random0To1() &#123;</div><div class="line">       if (random1To5() &lt;= 2) &#123;</div><div class="line">           return 0;</div><div class="line">       &#125; else if (4 &lt;= random1To5() &amp;&amp; random1To5() &lt;= 5) &#123;</div><div class="line">           return 1;</div><div class="line">       &#125; else return random0To1();</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>②. 现在我们有了0,1的函数。那么1~7的话，我们只需产生0~6然后加1即可。<br>如要产生0~6看成二进制的话，只需要三位即可满足。也就是说只需要三次random0To1()函数。同理，若产生7，重做。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static int random1To7() &#123;</div><div class="line">        //应该产生（0~6）+1</div><div class="line">        int res = (int) (Math.pow(2, 2) * random0To1() + Math.pow(2, 1) * random0To1() + Math.pow(2, 0) * random0To1());</div><div class="line">        if (res &lt; 7) &#123;</div><div class="line">            return res + 1;</div><div class="line">        &#125; else return random1To7();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>转换为进制的这种思想，可以应用到所有的这类问题上。  </p>
+<p>2.给定一个以p概率产生0，以1-p概率产生1的随机函数rand01p如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public int rand01p() &#123; // 可随意改变p       </div><div class="line">    double p = 0.83;       </div><div class="line">    return Math.random() &lt; p ? 0 : 1;  </div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>除此之外，不能使用任何额外的随机机制，请用rand01p实现等概率随机产生1~6的随机函数rand1To6。<br>思路：<br>因为rand01p()以p概率产生0，以1-p概率产生1，所以产生01和10的概率都是p(1-p).那么我们就可以认为10为0,01为1.并且是等概率的。所以问题就又回到上面的进制问题产生1~6.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public static int rand01p() &#123; // 可随意改变p</div><div class="line">     double p = 0.83;</div><div class="line">     return Math.random() &lt; p ? 0 : 1;</div><div class="line"> &#125;</div><div class="line"> //等概率产生0,1</div><div class="line"> public static int rand01() &#123;</div><div class="line">     int num;</div><div class="line">     do &#123;</div><div class="line">         num = rand01p();</div><div class="line">     &#125; while (num == rand01p());</div><div class="line">     return num;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>1~6转换为0~5然后+1即可。0~5二进制也是3位。如果大于5重做。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public static int random1To6() &#123;</div><div class="line">        int res = (int) (Math.pow(2, 2) * rand01() + Math.pow(2, 1) * rand01() + Math.pow(2, 0) * rand01());</div><div class="line">        if (res &lt;= 5) &#123;</div><div class="line">            return res + 1;</div><div class="line">        &#125; else return random1To6();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -420,9 +427,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/递归/" rel="tag"># 递归</a>
-          
-            <a href="/tags/链表/" rel="tag"># 链表</a>
+            <a href="/tags/随机函数/" rel="tag"># 随机函数</a>
           
         </div>
       
@@ -435,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/26/反转链表/" rel="next" title="反转链表">
-                <i class="fa fa-chevron-left"></i> 反转链表
+              <a href="/2017/08/06/KMP/" rel="next" title="KMP">
+                <i class="fa fa-chevron-left"></i> KMP
               </a>
             
           </div>
@@ -444,10 +449,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/27/判断数的子结构/" rel="prev" title="树的子结构">
-                树的子结构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
