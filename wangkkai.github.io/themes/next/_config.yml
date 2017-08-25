@@ -273,7 +273,7 @@ mathjax:
 #baidu_analytics:
 
 # Disqus
-#disqus_shortname:
+disqus_shortname: http-www-onlykai-me
 
 # Hypercomments
 #hypercomments_id:
