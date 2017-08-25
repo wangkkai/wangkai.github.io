@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,python,life" />
+  <meta name="keywords" content="数组," />
 
 
 
@@ -87,13 +87,17 @@
 
 
 
+<meta name="description" content="给定一个数组，你可以对其任意切分为两部分，要求两部分必须有值。两部分最大值相减，使其结果最大。返回该差值最大的结果。一个长度为n的数组，我们可以有n-1中分法。比如：arr[]={1,2,5} 我们在1后面进行切分那么，差值最大为5-1=4     一、暴力的方法我们暴力求解每一个位置的左右最大，然后计算其差值。最后返回一个最大的差值。因为n长的数组有n-1中分法，对于每一种我们都要计算其左右的">
+<meta name="keywords" content="数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wangkai&#39;s blog">
-<meta property="og:url" content="http://wangkkai.github.io/2017/05/28/01矩阵中1所围成的面积最大子矩阵/index.html">
+<meta property="og:title" content="数组切分为两部分的最大值之差最大.md">
+<meta property="og:url" content="http://wangkkai.github.io/2017/08/25/数组切分为两部分的最大值之差最大/index.html">
 <meta property="og:site_name" content="wangkai&#39;s blog">
-<meta property="og:updated_time" content="2017-05-28T14:00:58.122Z">
+<meta property="og:description" content="给定一个数组，你可以对其任意切分为两部分，要求两部分必须有值。两部分最大值相减，使其结果最大。返回该差值最大的结果。一个长度为n的数组，我们可以有n-1中分法。比如：arr[]={1,2,5} 我们在1后面进行切分那么，差值最大为5-1=4     一、暴力的方法我们暴力求解每一个位置的左右最大，然后计算其差值。最后返回一个最大的差值。因为n长的数组有n-1中分法，对于每一种我们都要计算其左右的">
+<meta property="og:updated_time" content="2017-08-25T03:20:19.943Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangkai&#39;s blog">
+<meta name="twitter:title" content="数组切分为两部分的最大值之差最大.md">
+<meta name="twitter:description" content="给定一个数组，你可以对其任意切分为两部分，要求两部分必须有值。两部分最大值相减，使其结果最大。返回该差值最大的结果。一个长度为n的数组，我们可以有n-1中分法。比如：arr[]={1,2,5} 我们在1后面进行切分那么，差值最大为5-1=4     一、暴力的方法我们暴力求解每一个位置的左右最大，然后计算其差值。最后返回一个最大的差值。因为n长的数组有n-1中分法，对于每一种我们都要计算其左右的">
 
 
 
@@ -121,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://wangkkai.github.io/2017/05/28/01矩阵中1所围成的面积最大子矩阵/"/>
+  <link rel="canonical" href="http://wangkkai.github.io/2017/08/25/数组切分为两部分的最大值之差最大/"/>
 
 
 
 
 
-  <title>  | wangkai's blog </title>
+  <title> 数组切分为两部分的最大值之差最大.md | wangkai's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/05/28/01矩阵中1所围成的面积最大子矩阵/">
+  <link itemprop="mainEntityOfPage" href="http://wangkkai.github.io/2017/08/25/数组切分为两部分的最大值之差最大/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="wangkai">
@@ -290,7 +294,7 @@
             
             
               
-                
+                数组切分为两部分的最大值之差最大.md
               
             
           </h1>
@@ -305,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T22:00:57+08:00">
-                2017-05-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T10:58:05+08:00">
+                2017-08-25
               </time>
             
 
@@ -316,6 +320,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -324,8 +350,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/05/28/01矩阵中1所围成的面积最大子矩阵/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                <a href="/2017/08/25/数组切分为两部分的最大值之差最大/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/25/数组切分为两部分的最大值之差最大/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +377,13 @@
       
 
       
-        
+        <blockquote>
+<p>给定一个数组，你可以对其任意切分为两部分，要求两部分必须有值。两部分最大值相减，使其结果最大。返回该差值最大的结果。一个长度为n的数组，我们可以有n-1中分法。<br>比如：arr[]={1,2,5} 我们在1后面进行切分<br>那么，差值最大为5-1=4   </p>
+</blockquote>
+<h4 id="一、暴力的方法"><a href="#一、暴力的方法" class="headerlink" title="一、暴力的方法"></a>一、暴力的方法</h4><p>我们暴力求解每一个位置的左右最大，然后计算其差值。最后返回一个最大的差值。因为n长的数组有n-1中分法，对于每一种我们都要计算其左右的最大。所以总的时间复杂度是O(N^2)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">public static int getTwoPartMax(int arr[]) &#123;</div><div class="line">        int max = 0;</div><div class="line">        for (int i = 0; i &lt; arr.length - 1; i++) &#123;</div><div class="line">            for (int j = i + 1; j &lt; arr.length; j++) &#123;</div><div class="line">                int leftMax = calMax(arr, i, j);</div><div class="line">                int rightMax = calMax(arr, j, arr.length);</div><div class="line">                int localMax = Math.abs(leftMax - rightMax);</div><div class="line">                if (leftMax &gt; max) &#123;</div><div class="line">                    max = localMax;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return max;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">     private static int calMax(int[] arr, int i, int j) &#123;</div><div class="line">        int max = 0;</div><div class="line">        for (int k = i; k &lt; j; k++) &#123;</div><div class="line">            if (arr[k] &gt; max) &#123;</div><div class="line">                max = arr[k];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return max;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">```  </div><div class="line"></div><div class="line">#### 二、空间换时间</div><div class="line">我们的目的是找到一个分割点左边最大和右边最大，然后计算差值。那么我们就用两个数组分别存储0-i的最大值和i-n的最大值。那么对应的值相减的最大结果就是所求。  </div><div class="line">比如上面的例子:  </div><div class="line">arr[]=&#123;1,2,5&#125; 那么  </div><div class="line">left[]=&#123;1,2,5&#125;  </div><div class="line">right[]=&#123;5,5,5&#125; 所以结果就是5-1=4 </div><div class="line"></div><div class="line">上面的这种方法时间复杂度是O(N)空间复杂度也是O(N)</div></pre></td></tr></table></figure></p>
+<p>public static int getTwoPartMax1(int[] arr) {<br>        int[] maxarr1 = new int[arr.length];<br>        int[] maxarr2 = new int[arr.length];<br>        int max0 = arr[0];<br>        for (int i = 0; i &lt; arr.length; i++) {<br>            if (arr[i] &gt; max0) {<br>                max0 = arr[i];<br>            }<br>            maxarr1[i] = max0;<br>        }<br>        int max1 = arr[arr.length - 1];<br>        for (int i = arr.length - 1; i &gt;= 0; i–) {<br>            if (arr[i] &gt; max1) {<br>                max1 = arr[i];<br>            }<br>            maxarr2[i] = max1;<br>        }<br>        int res = 0;<br>        for (int i = 0; i &lt; arr.length; i++) {<br>            if (Math.abs(maxarr1[i] - maxarr2[i]) &gt; res) {<br>                res = Math.abs(maxarr1[i] - maxarr2[i]);<br>            }<br>        }<br>        return res;<br>    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 三、技巧的方法</div><div class="line">首先，我们这么分析，一个数组进行切分，那么该最大值的max一定会被分到左边或者右边。如果分到了左边，那么我们就用max-最右边的数即可。为什么只减最右边的right就行呢？</div><div class="line">因为如果最右的right左边还有比它小的，那么右边最大的还是right。如果right左边还有比它大的，那么就会把这个大的分到左边去。  </div><div class="line">举个例子：  </div><div class="line">arr[]=&#123;4,5,2,3&#125;   </div><div class="line">我们首先找到最大的5，假设5在左边。那么我们就直接用5-3即可。因为如果2变为了4，那么我们就会把4分到5一组。  </div><div class="line">同理，假设最大值max在右边，我们就只需要减去最左边的arr[0]即可。  </div><div class="line"></div><div class="line">最后，我们只需要判断一下，左右两边的值哪个小即可。结果为max-min(arr[0]-arr[n-1])  </div><div class="line">时间复杂度为o(N),空间复杂度为O(1)</div></pre></td></tr></table></figure></p>
+<p> public static int getTwoPartMax2(int[] arr) {<br>        int max = arr[0];<br>        for (int i = 0; i &lt; arr.length; i++) {<br>            if (arr[i] &gt; max) {<br>                max = arr[i];<br>            }<br>        }<br>        return max - Math.min(arr[0], arr[arr.length - 1]);<br>    }<br>```</p>
+
       
     </div>
 
@@ -388,6 +420,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+        </div>
+      
 
       
         
@@ -397,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/28/大于等于给定值的最长连续子数组/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2017/08/21/过桥问题/" rel="next" title="过桥问题">
+                <i class="fa fa-chevron-left"></i> 过桥问题
               </a>
             
           </div>
@@ -406,10 +444,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/10/虚拟机无法联网的问题/" rel="prev" title="虚拟机无法联网的问题">
-                虚拟机无法联网的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -458,7 +492,12 @@
           
   <div class="comments" id="comments">
     
-      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -481,8 +520,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -497,7 +545,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -515,7 +563,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -560,6 +608,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、暴力的方法"><span class="nav-number">1.</span> <span class="nav-text">一、暴力的方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -677,27 +741,37 @@
 
   
 
+    <script type="text/javascript">
+      var disqus_shortname = 'http-www-onlykai-me';
+      var disqus_identifier = '2017/08/25/数组切分为两部分的最大值之差最大/';
+
+      var disqus_title = "数组切分为两部分的最大值之差最大.md";
 
 
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
 
-	
+      run_disqus_script('count.js');
 
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
 
-
-
-
-  
-    
-    <script>
-      var cloudTieConfig = {
-        url: document.location.href, 
-        sourceId: "",
-        productKey: "c0d477d715e3424cbb076626fd2fccec",
-        target: "cloud-tie-wrapper"
-      };
     </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
+
+
+
 
 
 
